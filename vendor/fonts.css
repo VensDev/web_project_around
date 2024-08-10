@@ -1,0 +1,21 @@
+@font-face {
+    src: url(Fonts/Inter_24pt-Regular.woff) format('woff');
+    src: url(Fonts/Inter_24pt-Regular.woff) format('woff2');
+    src: url(Fonts/Inter_24pt-Regular.woff) format('truetype');
+    font-family: 'Inter400';
+    font-weight: 400;
+}
+@font-face {
+    src: url(Fonts/Inter_24pt-Medium.woff) format('woff');
+    src: url(Fonts/Inter_24pt-Medium.woff) format('woff2');
+    src: url(Fonts/Inter_24pt-Medium.woff) format('truetype');
+    font-family: 'Inter500';
+    font-weight: 500;
+}
+@font-face {
+    src: url(Fonts/Inter_24pt-Black.woff) format('woff');
+    src: url(Fonts/Inter_24pt-Black.woff) format('woff2');
+    src: url(Fonts/Inter_24pt-Black.woff) format('truetype');
+    font-family: 'Inter900';
+    font-weight: 900;
+}

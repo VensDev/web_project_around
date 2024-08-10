@@ -1,0 +1,60 @@
+
+.profile{
+    display: flex;
+    margin-top: 40px;
+}
+
+.profile__avatar{
+    max-width: 120px;
+}
+
+.profile__info{
+    max-width: 415px;
+    display: grid;
+    grid-template-areas: 
+    "name edit"
+    "subtitle add";
+    margin: 22px 0 5px 30px;
+
+}
+
+.profile__name{
+    grid-area: name;
+    font-family: Inter;
+    font-size: 42px;
+    font-weight: 500;
+    line-height: 48px;
+    text-align: left;
+       /* fonte inter weight 500 */
+       margin: 0;
+}
+
+.profile__edit-button{
+    grid-area: edit;
+    width: 24px;
+    height: 24px;
+    border: 1px solid rgba(255, 255, 255, 1);
+    background: transparent url("../images/edit-button.png") center;
+    margin: 15px 0 0 18px;
+}
+
+.profile__subtitle{
+    grid-area: subtitle;
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21.78px;
+    margin: 16px 0 0;
+    /* fonte 400 inter */
+
+}
+
+.profile__add-button{
+    grid-area: add;
+    width: 150px;
+    height: 50px;
+    margin: 35px 0 35px auto;
+    border: 1px solid rgba(255, 255, 255, 1);
+    background: transparent url("../images/add-button.png") center;
+    padding: 0;
+}
