@@ -3,9 +3,9 @@ body{
     margin: 0;
 }
 .page{
+    color:#FFFFFF;
     max-width: 880px;
     margin: 0 auto;
-    color:#FFFFFF;
     font-family: 'Inter400', sans-serif;
     text-rendering:optimizeLegibility;
     -moz-osx-font-smoothing: grayscale;

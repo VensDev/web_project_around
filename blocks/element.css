@@ -1,8 +1,8 @@
 .element{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 17px 20px;
-
+    gap: 20px 17px;
+    margin-top: 50px;
 }
 
 .element__template{
@@ -13,12 +13,13 @@
 
 
 .element__item{
-    display: flex;
-    justify-content: space-between;
     background-color: white;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    display: flex;
+    justify-content: space-between;
     overflow: hidden;
+    padding: 25px 15px 31px 21px;
 }
 
 .element__image{
@@ -28,13 +29,30 @@
 
 .element__title{
     color: black;
+    font-family: 'Inter900';
+    font-size: 24px;
+    line-height: 29.05px;
+    margin: 0;
+    text-align: left;
+
 
 }
 
 .element__like{
-    width: 24px;
-    height: 24px;
+    cursor: pointer;
     border: none;
     background: transparent url("../images/like.png") center no-repeat;
-    margin: 15px 0 0 18px;
+    height: 24px;
+    transition: opacity 0.2s;
+    width: 24px;
 }
+
+.element__like:hover{
+    opacity: 0.7;
+}
+
+.element__like::after,
+.element__like::before{
+    background-color: rgba(rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), 1);
+}
+/* ver se precisa de javascript */
