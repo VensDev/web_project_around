@@ -36,6 +36,7 @@
 .profile__edit-button{
     border: 1px solid rgba(255, 255, 255, 1);
     background: transparent url("../images/edit-button.png") center;
+    border-radius: 1px;
     cursor: pointer;
     grid-area: edit;
     height: 24px;
@@ -61,6 +62,7 @@
 .profile__add-button{
     background: transparent url("../images/add-button.png") center no-repeat;
     border: 1px solid rgba(255, 255, 255, 1);
+    border-radius: 2px;
     cursor: pointer;
     grid-area: add;
     height: 50px;
