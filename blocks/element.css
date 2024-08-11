@@ -35,8 +35,8 @@
     margin: 0;
     text-align: left;
 
-
 }
+
 
 .element__like{
     cursor: pointer;
@@ -56,3 +56,20 @@
     background-color: rgba(rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), 1);
 }
 /* ver se precisa de javascript */
+
+@media screen and (max-width: 1024px) {
+    .element{
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 581px;
+        margin: 43px auto 0;
+    }
+    
+}
+@media screen and (max-width: 720px) {
+    .element{
+        grid-template-columns: 1fr;
+        max-width: 282px;
+        margin: 36px auto 0;
+    }
+
+}
