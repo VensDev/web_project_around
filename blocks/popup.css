@@ -1,10 +1,13 @@
 .popup{
+    display: none;
     width: 430px;
     height: 330px;
     border-radius: 10px;
     background: white;
     color: black;
+    animation: 1s drop;
 }
+
 
 .popup__title{
     font-family: 'Inter900';
