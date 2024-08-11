@@ -6,6 +6,8 @@
     background: white;
     color: black;
     animation: 1s drop;
+    margin-top: 200px;
+    position: relative;
 }
 
 
@@ -45,3 +47,16 @@
     border-radius: 2px;
 
 }
+.popup__close-button{
+    background: transparent url(../images/close-icon.png) center;
+    position: absolute;
+    right: -34px;
+    top: -30px;
+    border: none;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+}
+.popup__close-button:hover {
+    opacity: 0.7;
+ }

@@ -10,6 +10,7 @@
         content="viagem, exploração, destinos, parques nacionais, montanhas, lagos, fotografia da natureza">
     <title>Around the u.s.</title>
     <link rel="stylesheet" href="./pages/index.css">
+
 </head>
 
 <body>
@@ -17,16 +18,16 @@
         <!-- test -->
         <div id="popup" class="popup">
             <!-- <div class="popup__content"> -->
-            <!-- <span id="closePopup" class="close">&times;</span> -->
             <h3 class="popup__title">Editar perfil</h3>
             <form class="popup__form" id="editForm">
                 <input class="popup__edit" type="text" id="name" name="name" placeholder="Nomes" required>
                 <input class="popup__edit" type="text" id="name" name="name" placeholder="Sobre min" required>
                 <button class="popup__button" type="submit">Salvar</button>
             </form>
+            <button class="popup__close-button" onclick="hide('popup')"></button>
             <!-- </div> -->
         </div>
-        <script src="script.js"></script>
+
         <!-- test -->
         <header class="header">
             <img src="./images/Vector.png" alt="Título Around of the us" class="header__title">
@@ -36,7 +37,7 @@
             <img src="./images/Avatar.png" alt="Avatar" class="profile__avatar">
             <div class="profile__info">
                 <h2 class="profile__name">Jacques Cousteau</h2>
-                <button class="profile__edit-button"></button>
+                <button class="profile__edit-button" onclick="show('popup')"></button>
                 <p class="profile__subtitle">Explorador</p>
             </div>
             <button class="profile__add-button"></button>
@@ -93,6 +94,7 @@
         </footer>
 
     </div>
+    <script src="./scripts/index.js" defer></script>
 </body>
 
 </html>
