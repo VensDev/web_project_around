@@ -5,10 +5,18 @@
     border-radius: 10px;
     background: white;
     color: black;
-    animation: 1s drop;
-    margin-top: 200px;
     position: relative;
+    animation: 2s drop;
+    margin-top: 100px;
 }
+@keyframes drop{
+    0% { top: -100%;
+        /* Estilos no início da animação */
+      }
+      100% { bottom: 50%;
+        /* Estilos no fim da animação */
+      }
+    }
 
 
 .popup__title{
