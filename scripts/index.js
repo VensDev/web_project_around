@@ -1,23 +1,20 @@
-let popUp = document.querySelector(".popup");
+let popUp = document.querySelector(".popup__content");
 let editProfile = document.querySelector(".profile__edit-button");
 let closeEdit = document.querySelector(".popup__close-button")
-
+let popUpTemplate = document.querySelector(".popup")
 
 function appearEditPopUp(){
     popUp.style.display = "block";
+    popUpTemplate.style.display = "block"
 }
 editProfile.addEventListener("click", appearEditPopUp);
 
 
 function closeProfile(){
     popUp.style.display = "none";
+    popUpTemplate.style.display = "none"
 }
 closeEdit.addEventListener("click", closeProfile);
 
 
-// document.getElementById('editButton').addEventListener('click', function() {
-//     var formContainer = document.getElementById('formContainer');
-//     formContainer.style.top = '50%';
-//     formContainer.style.transform = 'translate(-50%, -50%)';
-// });
 
