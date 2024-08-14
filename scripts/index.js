@@ -12,6 +12,7 @@ let job = document.querySelector('#job');
 let saveProfile = document.querySelector(".popup__button");
 let profileName = document.querySelector(".profile__name");
 let subJob = document.querySelector(".profile__subtitle");
+let form = document.querySelector(".popup__form");
 // >>
 
 // << botão do coração
@@ -44,8 +45,8 @@ function handleProfileFormSubmit(evt) {
     subJob.textContent = job.value;
 
     closePopUp();
-}   
- saveProfile.addEventListener("click", handleProfileFormSubmit);
+}
+ form.addEventListener("submit", handleProfileFormSubmit);
 // >>
 // << botão do coração
 function clickLike(event){
