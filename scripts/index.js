@@ -7,12 +7,12 @@ let editButton = document.querySelector(".profile__edit-button");
 // >>
 
 // << pop Up edit profile
+let form = document.querySelector(".popup__form");
 let nameInput = document.querySelector('#name');
 let job = document.querySelector('#job');
 let saveProfile = document.querySelector(".popup__button");
 let profileName = document.querySelector(".profile__name");
 let subJob = document.querySelector(".profile__subtitle");
-let form = document.querySelector(".popup__form");
 // >>
 
 // << botão do coração
