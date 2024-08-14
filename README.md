@@ -21,3 +21,5 @@ Responsável pelo design e layout da página, incluindo o estilo da galeria de i
 Implementado para adicionar interatividade à página. Especificamente, permite que os usuários alterem o nome e a descrição do perfil e façam com que o ícone do coração fique preto ao marcar um local como favorito.
 ### Motivação:
 Este projeto foi criado para treinar habilidades interativas de javascript em junção com html e css. Ao permitir personalizações e interações simples. A escolha de HTML, CSS e JavaScript reflete a busca por uma solução eficiente e acessível para criar uma interface de usuário intuitiva e responsiva. Num futuro acrescentar adição de fotos ao botão + e interatividades as imagens direcionando ao locais de sua preferência.
+
+https://vensdev.github.io/web_project_around/
