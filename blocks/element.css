@@ -43,19 +43,29 @@
     border: none;
     background: transparent url("../images/like.png") center no-repeat;
     height: 24px;
-    transition: opacity 0.2s;
+
     width: 24px;
 }
 
 .element__like:hover{
     opacity: 0.7;
+    transition: 0.5s;
 }
 
-.element__like::after,
-.element__like::before{
-    background-color: rgba(rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), 1);
+.element__like-black{
+    cursor: pointer;
+    border: none;
+    background: transparent url(../images/like-black.png) center no-repeat;
+    height: 24px;
+
+    width: 24px;
 }
-/* ver se precisa de javascript */
+.element__like-black:hover{
+    transition: 0.5s;
+}
+
+
+
 
 @media screen and (max-width: 1024px) {
     .element{

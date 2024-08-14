@@ -4,12 +4,17 @@ let editButton = document.querySelector(".profile__edit-button");
 let closeEdit = document.querySelector(".popup__close-button")
 let popUpTemplate = document.querySelector(".popup")
 
+
 let saveProfile = document.querySelector(".popup__button");
 let nameInput = document.querySelector('#name');
 let job = document.querySelector('#job');
 let profileName = document.querySelector(".profile__name");
 let subJob = document.querySelector(".profile__subtitle");
 
+
+// << botão do coração
+let like = document.querySelectorAll(".element__like");
+// >>
 function appearEditPopUp(){
 
     popUp.style.display = "block";
@@ -37,4 +42,16 @@ function handleProfileFormSubmit(evt) {
 }   
  saveProfile.addEventListener("click", handleProfileFormSubmit);
 
+
+function clickLike(event){
+    let like = event.target;
+    if (like.classList.contains("element__like")) {
+        like.classList.remove("element__like");
+        like.classList.add("element__like-black");
+      } else {
+        like.classList.remove("element__like-black");
+        like.classList.add("element__like");
+      }
+}
+like.forEach((like) => like.addEventListener("click", clickLike));
 
