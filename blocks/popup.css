@@ -1,24 +1,24 @@
 .popup{
     background: rgba(0, 0, 0, 0.5);
-    width: 100%;
+    display: none;
     height: 100%;
     position: absolute;
-    display: none;
+    width: 100%;
     z-index: 9;
 
 }
 
 .popup__content{
-    display: none;
-    width: 430px;
-    height: 330px;
+    animation:drop 1s forwards;
     border-radius: 10px;
     background: white;
     color: black;
+    display: none;
+    height: 330px;
     position: relative;
     position: absolute;
-    animation:drop 1s forwards;
     transform: translate(50%);
+    width: 430px;
     z-index: 10;
 }
 @keyframes drop{
@@ -35,15 +35,15 @@
     font-family: 'Inter900';
     font-size: 24px;
     line-height: 29.05px;
-    text-align: left;
-    padding: 34px 64px 54px 36px;
     margin: 0;
+    padding: 34px 64px 54px 36px;
+    text-align: left;
 }
 .popup__form{
     display: flex;
     flex-direction: column;
-    max-width: 358px;
     margin: 0 auto;
+    max-width: 358px;
 }
 
 .popup__edit{
@@ -57,24 +57,24 @@
 }
 
 .popup__button{
-    width: 358px;
-    height: 50.15px;
-    font-size: 18px;
-    line-height: 21.78px;
     color: #FFFFFF;
     background: #000000;
     border-radius: 2px;
+    font-size: 18px;
+    height: 50.15px;
+    line-height: 21.78px;
+    width: 358px;
 
 }
 .popup__close-button{
+    cursor: pointer;
     background: transparent url(../images/close-icon.png) center;
+    border: none;
+    height: 26px;
     position: absolute;
     right: -34px;
     top: -30px;
-    border: none;
     width: 26px;
-    height: 26px;
-    cursor: pointer;
 }
 .popup__close-button:hover {
     opacity: 0.7;

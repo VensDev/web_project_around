@@ -34,16 +34,17 @@
     line-height: 29.05px;
     margin: 0;
     text-align: left;
-
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 
 .element__like{
-    cursor: pointer;
     border: none;
     background: transparent url("../images/like.png") center no-repeat;
+    cursor: pointer;
     height: 24px;
-
     width: 24px;
 }
 
@@ -53,11 +54,10 @@
 }
 
 .element__like-black{
-    cursor: pointer;
     border: none;
     background: transparent url(../images/like-black.png) center no-repeat;
+    cursor: pointer;
     height: 24px;
-
     width: 24px;
 }
 .element__like-black:hover{
@@ -70,16 +70,16 @@
 @media screen and (max-width: 1024px) {
     .element{
         grid-template-columns: repeat(2, 1fr);
-        max-width: 581px;
         margin: 43px auto 0;
+        max-width: 581px;
     }
     
 }
 @media screen and (max-width: 720px) {
     .element{
         grid-template-columns: 1fr;
-        max-width: 282px;
         margin: 36px auto 0;
+        max-width: 282px;
     }
 
 }

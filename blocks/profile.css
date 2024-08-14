@@ -73,8 +73,8 @@
     
 }
 .profile__add-button:active {
-    transform: translateY(1.5px);
     box-shadow: 2px 2px #6e6e6e;
+    transform: translateY(1.5px);
   }
 
 .profile__add-button:hover {
