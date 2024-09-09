@@ -1,23 +1,21 @@
 
 // <<pop up appears
-let popUpTemplate = document.querySelector(".popup")
-let popUp = document.querySelector(".popup__content");
-let closeEdit = document.querySelector(".popup__close-button")
-let editButton = document.querySelector(".profile__edit-button");
+const popUpTemplate = document.querySelector(".popup")
+const popUp = document.querySelector(".popup__content");
+const closeEdit = document.querySelector(".popup__close-button")
+const editButton = document.querySelector(".profile__edit-button");
 // >>
 
 // << pop Up edit profile
-let form = document.querySelector(".popup__form");
-let nameInput = document.querySelector('#name');
-let job = document.querySelector('#job');
-let saveProfile = document.querySelector(".popup__button");
-let profileName = document.querySelector(".profile__name");
-let subJob = document.querySelector(".profile__subtitle");
+const form = document.querySelector(".popup__form");
+const nameInput = document.querySelector('#name');
+const job = document.querySelector('#job');
+const saveProfile = document.querySelector(".popup__button");
+const profileName = document.querySelector(".profile__name");
+const subJob = document.querySelector(".profile__subtitle");
 // >>
 
-// << botão do coração
-let like = document.querySelectorAll(".element__like");
-// >>
+
 
 // <<pop up appears
 function appearEditPopUp(){
@@ -37,6 +35,7 @@ function closePopUp(){
 }
 closeEdit.addEventListener("click", closePopUp);
 // >>
+
 // << pop Up edit profile
 function handleProfileFormSubmit(evt) {
     evt.preventDefault();  
@@ -48,7 +47,9 @@ function handleProfileFormSubmit(evt) {
 }
  form.addEventListener("submit", handleProfileFormSubmit);
 // >>
+
 // << botão do coração
+const like = document.querySelectorAll(".element__like");
 function clickLike(event){
     let like = event.target;
     if (like.classList.contains("element__like")) {
