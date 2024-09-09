@@ -8,9 +8,9 @@
 .element__template{
     display: flex;
     flex-direction: column;
-
+    position: relative;
+    
 }
-
 
 .element__item{
     background-color: white;
@@ -22,9 +22,25 @@
     padding: 25px 15px 31px 21px;
 }
 
+.element__erase{
+    position: absolute;
+    width: 18px;
+    height: 19.3px;
+    cursor: pointer;
+    top: 18px;
+    right: 15px;
+    background: transparent url(../images/erase.png) center no-repeat;
+    border: none;
+}
+
+.element__erase:hover{
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
 .element__image{
     max-width: 282px;
-
+    cursor: pointer;
 }
 
 .element__title{
