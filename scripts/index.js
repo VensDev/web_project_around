@@ -15,35 +15,45 @@ const profileName = document.querySelector(".profile__name");
 const subJob = document.querySelector(".profile__subtitle");
 // >>
 
+editButton.addEventListener("click", function () {
+    popUpTemplate.classList.remove("display__none");
 
+});
+
+closeEdit.addEventListener("click", function () {
+    popUpTemplate.classList.add("display__none");
+});
 
 // <<pop up appears
-function appearEditPopUp(){
+// function appearEditPopUp(){
 
-    popUp.style.display = "block";
-    popUpTemplate.style.display = "block";
+//     popUp.style.display = "block";
+//     popUpTemplate.style.display = "block";
 
-}
-editButton.addEventListener("click", appearEditPopUp);
+// }
+// editButton.addEventListener("click", appearEditPopUp);
 
 
-function closePopUp(){
+// function closePopUp(){
 
-    popUp.style.display = "none";
-    popUpTemplate.style.display = "none";
+//     popUp.style.display = "none";
+//     popUpTemplate.style.display = "none";
 
-}
-closeEdit.addEventListener("click", closePopUp);
+// }
+// closeEdit.addEventListener("click", closePopUp);
 // >>
 
 // << pop Up edit profile
+
+// verificar como remover apos salvar sem o sistema de style.display
+
 function handleProfileFormSubmit(evt) {
     evt.preventDefault();  
 
     profileName.textContent = nameInput.value;
     subJob.textContent = job.value;
 
-    closePopUp();
+    popUpTemplate.classList.add("display__none");
 }
  form.addEventListener("submit", handleProfileFormSubmit);
 // >>
