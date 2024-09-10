@@ -1,28 +1,25 @@
 .popup{
     background: rgba(0, 0, 0, 0.5);
-    /* display: none; */
     height: 100%;
     position: absolute;
     width: 100%;
     z-index: 9;
 
 }
-
-/* .popup__add-image{
+.popup__image{
     background: rgba(0, 0, 0, 0.5);
-    display: none;
     height: 100%;
     position: absolute;
     width: 100%;
     z-index: 9;
-} */
+}
+
 
 .popup__content{
     animation:drop 1s forwards;
     border-radius: 10px;
     background: white;
     color: black;
-    /* display: none; */
     height: 330px;
     position: relative;
     position: absolute;
