@@ -121,6 +121,7 @@ function card(card) {
   const addImage = document.querySelector(".popup__big-image");
   const showImage = document.querySelector(".popup__show-image");
   const footerImage = document.querySelector(".popup__image_footer");
+
   cardImage.addEventListener("click", function(){
     showImage.classList.remove("display__none");
     addImage.setAttribute("src", card.link);
@@ -133,14 +134,37 @@ function card(card) {
         showImage.classList.add("display__none");
     });
 });  
-  
-  // Adicionar cardElement no HTML;
-  // Pegar a lista
-  const cardList = document.querySelector(".element");
-  cardList.prepend(cardElement);
-  
+
+
+
+
+// Adicionar cardElement no HTML;
+// Pegar a lista
+const cardList = document.querySelector(".element");
+cardList.prepend(cardElement);
+
 }
 
 initialCards.forEach(card);
 
+// ---------------formulario imagem---------------
+const titleImage = document.querySelector("#title");
+const imageUrl = document.querySelector("#image-url");
+const formAdd = document.querySelector(".popup__form-add-form");
+
+function asd(evt) {
+  evt.preventDefault();  
+  
+  const cardObj = {
+    name: titleImage.value,
+    link:imageUrl.value
+
+  }
+  card(cardObj);
+
+  popupImage.classList.add("display__none");
+  formAdd.reset();
+
+}
+formAdd.addEventListener("submit", asd);
 
