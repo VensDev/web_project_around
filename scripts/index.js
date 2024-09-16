@@ -116,7 +116,9 @@ function card(card) {
     }
     like.addEventListener("click", buttonLike);
   }
-  const addImage = document.querySelector(".popup__image-test");
+
+  // popup de mostrar as imagens em maior resolução.
+  const addImage = document.querySelector(".popup__big-image");
   const showImage = document.querySelector(".popup__show-image");
   const footerImage = document.querySelector(".popup__image_footer");
   cardImage.addEventListener("click", function(){
@@ -125,15 +127,12 @@ function card(card) {
     addImage.setAttribute("alt", card.name);
     footerImage.textContent = card.name;
   });
-
+// botao de fechar da imagem.
   closeEdit.forEach(function(button) {
     button.addEventListener("click", function() {
         showImage.classList.add("display__none");
     });
-});
-  
-  
-  
+});  
   
   // Adicionar cardElement no HTML;
   // Pegar a lista
