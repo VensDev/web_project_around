@@ -152,7 +152,7 @@ const titleImage = document.querySelector("#title");
 const imageUrl = document.querySelector("#image-url");
 const formAdd = document.querySelector(".popup__form-add-form");
 
-function asd(evt) {
+function addCard(evt) {
   evt.preventDefault();  
   
   const cardObj = {
@@ -166,5 +166,5 @@ function asd(evt) {
   formAdd.reset();
 
 }
-formAdd.addEventListener("submit", asd);
+formAdd.addEventListener("submit", addCard);
 
