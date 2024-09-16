@@ -6,14 +6,51 @@
     z-index: 9;
 
 }
-.popup__image{
+.popup__add-image{
+    background: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: 9;
+
+}
+
+/* teste */
+.popup__show-image{
     background: rgba(0, 0, 0, 0.5);
     height: 100%;
     position: absolute;
     width: 100%;
     z-index: 9;
 }
+.popup__image_content{
+    position: relative;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    top: 50%;
+    left:50%;
+    border: none;
 
+}
+
+.popup__image-test{
+    max-width: 816px;
+    max-height: 540px;
+    max-width: 75vw;
+    max-height: 75vh;
+}
+
+.popup__image_footer{
+    font-family: 'Inter400';
+    font-size: 12px;
+    line-height: 14.52px;
+    text-align: left;
+    margin: 10px 0 0;
+    color: #FFFFFF;
+
+}
+/* teste */
 
 .popup__content{
     animation:drop 1s forwards;
