@@ -26,12 +26,57 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
   profileName.textContent = nameInput.value;
-  subJob.textContent = job.value;
+  // subJob.textContent = job.value;
 
   popUpTemplate.classList.add("display__none");
 }
 form.addEventListener("submit", handleProfileFormSubmit);
 
+// testando 1 2 3
+const formT = document.getElementById("form__test");
+const span = document.querySelectorAll(".popup__edit");
+const spans = document.querySelectorAll(".popup__error");
+
+// const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\;
+
+function setError(index) {
+  spans[index].style.visibility = "visible";
+}
+
+function removeError(index) {
+  spans[index].style.visibility = "hidden";
+}
+
+function aboutValidate() {
+  if (span[1].value.length < 3) {
+    setError(1);
+  } else {
+    removeError(1);
+  }
+}
+
+function nameValidate() {
+  if (span[0].value.length < 3) {
+    setError(0);
+  } else {
+    removeError(0);
+  }
+}
+
+// import { enableValidation } from "./validate.js";
+// /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+// estar correto maravilha
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    const activePopup = document.querySelector(".popup:not(.display__none)");
+    if (activePopup) {
+      activePopup.classList.add("display__none");
+    }
+  }
+});
+
+// fim do teste
 // popup de adicionar imagem
 
 const addImage = document.querySelector(".profile__add-button");
