@@ -17,7 +17,7 @@ closeEdit.forEach(function (button) {
 
 const form = document.querySelector(".popup__form");
 const nameInput = document.querySelector("#name");
-const job = document.querySelector("#job");
+const about = document.querySelector("#about");
 const saveProfile = document.querySelector(".popup__button");
 const profileName = document.querySelector(".profile__name");
 const subJob = document.querySelector(".profile__subtitle");
@@ -26,7 +26,7 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
   profileName.textContent = nameInput.value;
-  // subJob.textContent = job.value;
+  subJob.textContent = about.value;
 
   popUpTemplate.classList.add("display__none");
 }
@@ -47,21 +47,53 @@ function removeError(index) {
   spans[index].style.visibility = "hidden";
 }
 
-function aboutValidate() {
-  if (span[1].value.length < 3) {
-    setError(1);
-  } else {
-    removeError(1);
-  }
-}
-
 function nameValidate() {
   if (span[0].value.length < 3) {
     setError(0);
+    return false;
   } else {
     removeError(0);
+    return true;
   }
 }
+
+function aboutValidate() {
+  if (span[1].value.length < 3) {
+    setError(1);
+    return false;
+  } else {
+    removeError(1);
+    return true;
+  }
+}
+function titleValidate() {
+  if (span[2].value.length < 3) {
+    setError(2);
+  } else {
+    removeError(2);
+  }
+}
+function urlValidate() {
+  if (span[3].value.length < 3) {
+    setError(3);
+  } else {
+    removeError(3);
+  }
+}
+
+function checkFields() {
+  const isNameValid = nameValidate(); // Valida o nome
+  const isAboutValid = aboutValidate(); // Valida o campo 'about'
+
+  // Habilita o botão se ambos os campos forem válidos
+  if (isNameValid && isAboutValid) {
+    saveProfile.disabled = false; // Habilita o botão
+  } else {
+    saveProfile.disabled = true; // Desabilita o botão
+  }
+}
+nameInput.addEventListener("input", checkFields);
+about.addEventListener("input", checkFields);
 
 // import { enableValidation } from "./validate.js";
 // /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/

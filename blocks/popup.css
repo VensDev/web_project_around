@@ -100,12 +100,6 @@
   margin-bottom: 15px;
 }
 
-/* .popup__error_visible {
-  visibility: visible;
-  font-size: 12px;
-  color: red;
-} */
-
 .popup__input_type_error {
   border-color: red;
 }
@@ -118,7 +112,15 @@
   height: 50.15px;
   line-height: 21.78px;
   width: 358px;
+  cursor: pointer;
 }
+.popup__button:disabled {
+  background-color: #d3d3d3; /* Cor de fundo cinza claro */
+  color: #ffffff; /* Cor do texto branco */
+  cursor: not-allowed; /* Ícone de cursor indicando que não pode ser clicado */
+  border: none;
+}
+
 .popup__close-button {
   cursor: pointer;
   background: transparent url(../images/close-icon.png) center;

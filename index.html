@@ -38,9 +38,11 @@
             <div class="popup__content">
                 <h3 class="popup__title">Novo Local</h3>
                 <form class="popup__form popup__form-add-form" id="form__test">
-                    <input class="popup__edit" id="title" type="text" placeholder="Título" required>
-                    <span class="popup__error">Preencha esse campo.</span>
-                    <input class="popup__edit" id="image-url" type="url" placeholder="Image URL" required>
+                    <input class="popup__edit" id="title" type="text" placeholder="Título" oninput="titleValidate()"
+                        required>
+                    <span class="popup__error">Coloque um título.</span>
+                    <input class="popup__edit" id="image-url" type="url" placeholder="Image URL" oninput="urlValidate()"
+                        required>
                     <span class="popup__error">Por favor, insira um endereço web.</span>
 
                     <button class="popup__button" type="submit">Salvar</button>
