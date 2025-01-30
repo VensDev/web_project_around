@@ -49,12 +49,11 @@ function submitProfileForm(evt) {
 // Adiciona um evento de envio ao formulário de edição do perfil
 profileForm.addEventListener("submit", submitProfileForm);
 
-// Seleciona o formulário de teste (não utilizado no código principal)
-const testForm = document.getElementById("formtest");
-
 // Seleciona todos os campos de entrada e mensagens de erro nos popups
 const inputFields = document.querySelectorAll(".popup__edit");
 const errorMessages = document.querySelectorAll(".popup__error");
+const inputFormImage = document.getElementById("title");
+const inputFormUrl = document.getElementById("image-url");
 
 // Função para exibir uma mensagem de erro em um campo específico
 function showError(index) {
@@ -90,19 +89,22 @@ function validateAbout() {
 
 // Função para validar o campo de título (deve ter pelo menos 3 caracteres)
 function validateTitle() {
-  if (inputFields[2].value.length < 3) {
+  if (inputFormImage.value.length < 3) {
     showError(2);
+    return false;
   } else {
     hideError(2);
+    return true;
   }
 }
 
-// Função para validar o campo de URL da imagem (deve ter pelo menos 3 caracteres)
 function validateUrl() {
-  if (inputFields[3].value.length < 3) {
+  if (inputFormUrl.value.length < 3) {
     showError(3);
+    return false;
   } else {
     hideError(3);
+    return true;
   }
 }
 
@@ -114,16 +116,46 @@ function updateSaveButtonState() {
     document.getElementById("savebutton").disabled = true;
   }
 }
-
-// Adiciona eventos de entrada aos campos para validar em tempo real
 document
   .getElementById("name")
   .addEventListener("input", updateSaveButtonState);
 document
   .getElementById("about")
   .addEventListener("input", updateSaveButtonState);
-document.getElementById("title").addEventListener("input", validateTitle);
-document.getElementById("image-url").addEventListener("input", validateUrl);
+
+function updateImageSaveButtonState() {
+  if (validateTitle() && validateUrl()) {
+    document.getElementById("savebutton-image").disabled = false;
+  } else {
+    document.getElementById("savebutton-image").disabled = true;
+  }
+}
+document
+  .getElementById("title")
+  .addEventListener("input", updateImageSaveButtonState);
+document
+  .getElementById("image-url")
+  .addEventListener("input", updateImageSaveButtonState);
+
+// Função para fechar popups ao clicar fora
+function closePopupOnClickOutside(evt) {
+  const activePopups = document.querySelectorAll(".popup:not(.display__none)");
+
+  activePopups.forEach(function (popup) {
+    const popupContent = popup.querySelector(".popup__content");
+
+    // Verifica se o clique foi fora do conteúdo do popup e não no botão que abre o popup
+    if (
+      !popupContent.contains(evt.target) &&
+      !evt.target.closest(".profile__edit-button") &&
+      !evt.target.closest(".profile__add-button")
+    ) {
+      popup.classList.add("display__none");
+    }
+  });
+}
+
+document.addEventListener("click", closePopupOnClickOutside);
 
 // Adiciona um evento de teclado para fechar o popup ao pressionar a tecla "Escape"
 document.addEventListener("keydown", function (event) {

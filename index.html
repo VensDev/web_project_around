@@ -20,12 +20,12 @@
             <div class="popup__content">
                 <h3 class="popup__title">Editar perfil</h3>
                 <form class="popup__form popup__form-edit" id="formtest">
-                    <input class="popup__edit" id="name" type="text" placeholder="Nomes" oninput="nameValidate()"
-                        onchange="validateButton()" required>
+                    <input class="popup__edit" id="name" type="text" placeholder="Nomes" oninput="validateName()"
+                        onchange="updateSaveButtonState()" required>
                     <span class="popup__error"> Preencha esse campo.</span>
 
-                    <input class="popup__edit" id="about" type="text" placeholder="Sobre mim" oninput="aboutValidate()"
-                        onchange="validateButton()" required>
+                    <input class="popup__edit" id="about" type="text" placeholder="Sobre mim" oninput="validateAbout()"
+                        onchange="updateSaveButtonState()" required>
                     <span class="popup__error">Preencha esse campo.</span>
 
                     <button class="popup__button" id="savebutton" type="submit" disabled>Salvar</button>
@@ -38,14 +38,14 @@
             <div class="popup__content">
                 <h3 class="popup__title">Novo Local</h3>
                 <form class="popup__form popup__form-add-form" id="formtest">
-                    <input class="popup__edit" id="title" type="text" placeholder="Título" oninput="titleValidate()"
-                        required>
+                    <input class="popup__edit" id="title" type="text" placeholder="Título" oninput="validateTitle()"
+                        onchange="updateImageSaveButtonState()" required>
                     <span class="popup__error">Coloque um título.</span>
-                    <input class="popup__edit" id="image-url" type="url" placeholder="Image URL" oninput="urlValidate()"
-                        required>
+                    <input class="popup__edit" id="image-url" type="url" placeholder="Image URL" oninput="validateUrl()"
+                        onchange="updateImageSaveButtonState()" required>
                     <span class="popup__error">Por favor, insira um endereço web.</span>
 
-                    <button class="popup__button" id="savebutton" type="submit">Salvar</button>
+                    <button class="popup__button" id="savebutton-image" type="submit" disabled>Salvar</button>
                 </form>
                 <button class="popup__close-button"></button>
             </div>

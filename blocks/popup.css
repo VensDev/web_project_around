@@ -124,11 +124,6 @@
   color: black;
 }
 
-#saveButton.enabled {
-  background-color: black;
-  cursor: pointer;
-}
-
 .popup__close-button {
   cursor: pointer;
   background: transparent url(../images/close-icon.png) center;
