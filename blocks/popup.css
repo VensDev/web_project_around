@@ -115,10 +115,18 @@
   cursor: pointer;
 }
 .popup__button:disabled {
-  background-color: #d3d3d3; /* Cor de fundo cinza claro */
-  color: #ffffff; /* Cor do texto branco */
-  cursor: not-allowed; /* Ícone de cursor indicando que não pode ser clicado */
-  border: none;
+  background-color: white;
+  opacity: 0.2;
+  font-size: 18px;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 2px;
+  cursor: not-allowed;
+  color: black;
+}
+
+#saveButton.enabled {
+  background-color: black;
+  cursor: pointer;
 }
 
 .popup__close-button {

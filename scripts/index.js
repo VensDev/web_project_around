@@ -1,104 +1,131 @@
-const popUpTemplate = document.querySelector(".popup");
-const closeEdit = document.querySelectorAll(".popup__close-button");
-const editButton = document.querySelector(".profile__edit-button");
+// Seleciona o elemento do popup que será usado para editar o perfil
+const popupElement = document.querySelector(".popup");
 
-editButton.addEventListener("click", function () {
-  popUpTemplate.classList.remove("display__none");
+// Seleciona todos os botões de fechar dentro dos popups
+const closeButtons = document.querySelectorAll(".popup__close-button");
+
+// Seleciona o botão que abre o popup de edição do perfil
+const editProfileButton = document.querySelector(".profile__edit-button");
+
+// Adiciona um evento de clique ao botão de edição para exibir o popup
+editProfileButton.addEventListener("click", function () {
+  popupElement.classList.remove("display__none");
 });
 
-closeEdit.forEach(function (button) {
+// Adiciona um evento de clique a cada botão de fechar para ocultar o popup correspondente
+closeButtons.forEach(function (button) {
   button.addEventListener("click", function () {
-    const popUpTemplate = button.closest(".popup");
-    popUpTemplate.classList.add("display__none");
+    const popupElement = button.closest(".popup");
+    popupElement.classList.add("display__none");
   });
 });
 
-// popUp formulario editar profile
+// Seleciona o formulário de edição do perfil
+const profileForm = document.querySelector(".popup__form");
 
-const form = document.querySelector(".popup__form");
-const nameInput = document.querySelector("#name");
-const about = document.querySelector("#about");
-const saveProfile = document.querySelector(".popup__button");
-const profileName = document.querySelector(".profile__name");
-const subJob = document.querySelector(".profile__subtitle");
+// Seleciona os campos de entrada do nome e da descrição do perfil
+const profileNameInput = document.querySelector("#name");
+const profileAboutInput = document.querySelector("#about");
 
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
+// Seleciona o botão de salvar no formulário de edição do perfil
+const saveProfileButton = document.querySelector(".popup__button");
 
-  profileName.textContent = nameInput.value;
-  subJob.textContent = about.value;
+// Seleciona os elementos onde o nome e a descrição do perfil são exibidos
+const profileNameDisplay = document.querySelector(".profile__name");
+const profileJobDisplay = document.querySelector(".profile__subtitle");
 
-  popUpTemplate.classList.add("display__none");
-}
-form.addEventListener("submit", handleProfileFormSubmit);
+// Função que lida com o envio do formulário de edição do perfil
+function submitProfileForm(evt) {
+  evt.preventDefault(); // Impede o comportamento padrão de recarregar a página
 
-// testando 1 2 3
-const formT = document.getElementById("form__test");
-const span = document.querySelectorAll(".popup__edit");
-const spans = document.querySelectorAll(".popup__error");
+  // Atualiza o nome e a descrição do perfil com os valores dos campos de entrada
+  profileNameDisplay.textContent = profileNameInput.value;
+  profileJobDisplay.textContent = profileAboutInput.value;
 
-// const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\;
-
-function setError(index) {
-  spans[index].style.visibility = "visible";
+  // Fecha o popup após salvar as alterações
+  popupElement.classList.add("display__none");
 }
 
-function removeError(index) {
-  spans[index].style.visibility = "hidden";
+// Adiciona um evento de envio ao formulário de edição do perfil
+profileForm.addEventListener("submit", submitProfileForm);
+
+// Seleciona o formulário de teste (não utilizado no código principal)
+const testForm = document.getElementById("formtest");
+
+// Seleciona todos os campos de entrada e mensagens de erro nos popups
+const inputFields = document.querySelectorAll(".popup__edit");
+const errorMessages = document.querySelectorAll(".popup__error");
+
+// Função para exibir uma mensagem de erro em um campo específico
+function showError(index) {
+  errorMessages[index].style.visibility = "visible";
 }
 
-function nameValidate() {
-  if (span[0].value.length < 3) {
-    setError(0);
+// Função para ocultar uma mensagem de erro em um campo específico
+function hideError(index) {
+  errorMessages[index].style.visibility = "hidden";
+}
+
+// Função para validar o campo de nome (deve ter pelo menos 3 caracteres)
+function validateName() {
+  if (inputFields[0].value.length < 3) {
+    showError(0);
     return false;
   } else {
-    removeError(0);
+    hideError(0);
     return true;
   }
 }
 
-function aboutValidate() {
-  if (span[1].value.length < 3) {
-    setError(1);
+// Função para validar o campo de descrição (deve ter pelo menos 3 caracteres)
+function validateAbout() {
+  if (inputFields[1].value.length < 3) {
+    showError(1);
     return false;
   } else {
-    removeError(1);
+    hideError(1);
     return true;
   }
 }
-function titleValidate() {
-  if (span[2].value.length < 3) {
-    setError(2);
+
+// Função para validar o campo de título (deve ter pelo menos 3 caracteres)
+function validateTitle() {
+  if (inputFields[2].value.length < 3) {
+    showError(2);
   } else {
-    removeError(2);
-  }
-}
-function urlValidate() {
-  if (span[3].value.length < 3) {
-    setError(3);
-  } else {
-    removeError(3);
+    hideError(2);
   }
 }
 
-function checkFields() {
-  const isNameValid = nameValidate(); // Valida o nome
-  const isAboutValid = aboutValidate(); // Valida o campo 'about'
-
-  // Habilita o botão se ambos os campos forem válidos
-  if (isNameValid && isAboutValid) {
-    saveProfile.disabled = false; // Habilita o botão
+// Função para validar o campo de URL da imagem (deve ter pelo menos 3 caracteres)
+function validateUrl() {
+  if (inputFields[3].value.length < 3) {
+    showError(3);
   } else {
-    saveProfile.disabled = true; // Desabilita o botão
+    hideError(3);
   }
 }
-nameInput.addEventListener("input", checkFields);
-about.addEventListener("input", checkFields);
 
-// import { enableValidation } from "./validate.js";
-// /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-// estar correto maravilha
+// Função para habilitar ou desabilitar o botão de salvar com base na validação dos campos
+function updateSaveButtonState() {
+  if (validateName() && validateAbout()) {
+    document.getElementById("savebutton").disabled = false;
+  } else {
+    document.getElementById("savebutton").disabled = true;
+  }
+}
 
+// Adiciona eventos de entrada aos campos para validar em tempo real
+document
+  .getElementById("name")
+  .addEventListener("input", updateSaveButtonState);
+document
+  .getElementById("about")
+  .addEventListener("input", updateSaveButtonState);
+document.getElementById("title").addEventListener("input", validateTitle);
+document.getElementById("image-url").addEventListener("input", validateUrl);
+
+// Adiciona um evento de teclado para fechar o popup ao pressionar a tecla "Escape"
 document.addEventListener("keydown", function (event) {
   if (event.key === "Escape") {
     const activePopup = document.querySelector(".popup:not(.display__none)");
@@ -108,23 +135,26 @@ document.addEventListener("keydown", function (event) {
   }
 });
 
-// fim do teste
-// popup de adicionar imagem
+// Seleciona o botão que abre o popup de adicionar imagem
+const addImageButton = document.querySelector(".profile__add-button");
 
-const addImage = document.querySelector(".profile__add-button");
-const popupImage = document.querySelector(".popup__add-image");
+// Seleciona o popup de adicionar imagem
+const imagePopup = document.querySelector(".popup__add-image");
 
-addImage.addEventListener("click", function () {
-  popupImage.classList.remove("display__none");
+// Adiciona um evento de clique ao botão de adicionar imagem para exibir o popup
+addImageButton.addEventListener("click", function () {
+  imagePopup.classList.remove("display__none");
 });
 
-closeEdit.forEach(function (button) {
+// Adiciona um evento de clique aos botões de fechar para ocultar o popup de adicionar imagem
+closeButtons.forEach(function (button) {
   button.addEventListener("click", function () {
-    popupImage.classList.add("display__none");
+    imagePopup.classList.add("display__none");
   });
 });
 
-const initialCards = [
+// Array de objetos contendo os dados iniciais dos cartões
+const cardData = [
   {
     name: "Vale de Yosemite",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
@@ -151,88 +181,89 @@ const initialCards = [
   },
 ];
 
-// Iterar pelos objetos do array
-
-// Criar cada cartão (criar elemento HTML - template)
-function card(card) {
-  // Pegar o template;
-  const cardTemplate = document.querySelector("#element-card").content;
-  // Faz a cópia;
-  const cardElement = cardTemplate
+// Função para criar um novo cartão com base nos dados fornecidos
+function createCard(card) {
+  // Seleciona o template do cartão e faz uma cópia
+  const cardTemplateElement = document.querySelector("#element-card").content;
+  const newCardElement = cardTemplateElement
     .querySelector(".element__template")
     .cloneNode(true);
-  // Pegar os elementos de dentro da cópia;
 
-  const cardImage = cardElement.querySelector(".element__image");
-  const cardButtonErase = cardElement.querySelector(".element__erase");
-  const cardTitle = cardElement.querySelector(".element__title");
+  // Seleciona os elementos internos do cartão (imagem, botão de deletar e título)
+  const cardImageElement = newCardElement.querySelector(".element__image");
+  const cardDeleteButton = newCardElement.querySelector(".element__erase");
+  const cardTitleElement = newCardElement.querySelector(".element__title");
 
-  // Popular os sub-elementos com as informações do objeto;
+  // Define a imagem, o texto alternativo e o título do cartão
+  cardImageElement.src = card.link;
+  cardImageElement.alt = card.name;
+  cardTitleElement.textContent = card.name;
 
-  cardImage.src = card.link;
-  cardImage.alt = card.name;
-  cardTitle.textContent = card.name;
-
-  cardButtonErase.addEventListener("click", function () {
-    cardButtonErase.parentNode.remove();
+  // Adiciona um evento de clique ao botão de deletar para remover o cartão
+  cardDeleteButton.addEventListener("click", function () {
+    cardDeleteButton.parentNode.remove();
   });
 
-  // botao de like
-  const like = cardElement.querySelector(".element__like");
-  if (like) {
-    function buttonLike() {
-      if (like.classList.contains("element__like")) {
-        like.classList.remove("element__like"); // Remove a classe antiga
-        like.classList.add("element__like-black"); // Adiciona a nova classe
-      } else {
-        like.classList.remove("element__like-black"); // Remove a nova classe, se já tiver sido adicionada
-        like.classList.add("element__like"); // Adiciona de volta a classe antiga
-      }
-    }
-    like.addEventListener("click", buttonLike);
+  // Seleciona o botão de "curtir" e adiciona um evento de clique para alternar o estado
+  const likeButton = newCardElement.querySelector(".element__like");
+  if (likeButton) {
+    likeButton.addEventListener("click", function () {
+      likeButton.classList.toggle("element__like-black");
+    });
   }
 
-  // popup de mostrar as imagens em maior resolução.
-  const bigImage = document.querySelector(".popup__big-image");
-  const showImage = document.querySelector(".popup__show-image");
-  const footerImage = document.querySelector(".popup__image_footer");
+  // Seleciona os elementos do popup de imagem ampliada
+  const popupImageElement = document.querySelector(".popup__big-image");
+  const imagePopupElement = document.querySelector(".popup__show-image");
+  const imagePopupFooter = document.querySelector(".popup__image_footer");
 
-  cardImage.addEventListener("click", function (event) {
-    showImage.classList.remove("display__none");
-    bigImage.setAttribute("src", card.link);
-    bigImage.setAttribute("alt", card.name);
-    footerImage.textContent = card.name;
+  // Adiciona um evento de clique à imagem do cartão para exibi-la em tamanho maior
+  cardImageElement.addEventListener("click", function () {
+    imagePopupElement.classList.remove("display__none");
+    popupImageElement.setAttribute("src", card.link);
+    popupImageElement.setAttribute("alt", card.name);
+    imagePopupFooter.textContent = card.name;
   });
-  // botao de fechar da imagem.
-  closeEdit.forEach(function (button) {
+
+  // Adiciona um evento de clique aos botões de fechar para ocultar o popup de imagem ampliada
+  closeButtons.forEach(function (button) {
     button.addEventListener("click", function () {
-      showImage.classList.add("display__none");
+      imagePopupElement.classList.add("display__none");
     });
   });
 
-  // Adicionar cardElement no HTML;
-  // Pegar a lista
-  const cardList = document.querySelector(".element");
-  cardList.prepend(cardElement);
+  // Seleciona o contêiner onde os cartões serão exibidos e adiciona o novo cartão
+  const cardContainer = document.querySelector(".element");
+  cardContainer.prepend(newCardElement);
 }
 
-initialCards.forEach(card);
+// Cria um cartão para cada item no array de dados iniciais
+cardData.forEach(createCard);
 
-// ---------------formulario imagem---------------
-const titleImage = document.querySelector("#title");
-const imageUrl = document.querySelector("#image-url");
-const formAdd = document.querySelector(".popup__form-add-form");
+// Seleciona os campos de entrada do formulário de adicionar imagem
+const imageTitleInput = document.querySelector("#title");
+const imageUrlInput = document.querySelector("#image-url");
 
-function addCard(evt) {
-  evt.preventDefault();
+// Seleciona o formulário de adicionar imagem
+const addCardForm = document.querySelector(".popup__form-add-form");
 
+// Função que lida com o envio do formulário de adicionar imagem
+function handleAddCardFormSubmit(evt) {
+  evt.preventDefault(); // Impede o comportamento padrão de recarregar a página
+
+  // Cria um objeto com os dados da nova imagem
   const cardObj = {
-    name: titleImage.value,
-    link: imageUrl.value,
+    name: imageTitleInput.value,
+    link: imageUrlInput.value,
   };
-  card(cardObj);
 
-  popupImage.classList.add("display__none");
-  formAdd.reset();
+  // Cria um novo cartão com os dados fornecidos
+  createCard(cardObj);
+
+  // Fecha o popup de adicionar imagem e limpa o formulário
+  imagePopup.classList.add("display__none");
+  addCardForm.reset();
 }
-formAdd.addEventListener("submit", addCard);
+
+// Adiciona um evento de envio ao formulário de adicionar imagem
+addCardForm.addEventListener("submit", handleAddCardFormSubmit);

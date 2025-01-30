@@ -19,16 +19,16 @@
         <div class="popup display__none">
             <div class="popup__content">
                 <h3 class="popup__title">Editar perfil</h3>
-                <form class="popup__form popup__form-edit" id="form__test">
+                <form class="popup__form popup__form-edit" id="formtest">
                     <input class="popup__edit" id="name" type="text" placeholder="Nomes" oninput="nameValidate()"
-                        required>
+                        onchange="validateButton()" required>
                     <span class="popup__error"> Preencha esse campo.</span>
 
                     <input class="popup__edit" id="about" type="text" placeholder="Sobre mim" oninput="aboutValidate()"
-                        required>
+                        onchange="validateButton()" required>
                     <span class="popup__error">Preencha esse campo.</span>
 
-                    <button class="popup__button" type="submit">Salvar</button>
+                    <button class="popup__button" id="savebutton" type="submit" disabled>Salvar</button>
                 </form>
                 <button class="popup__close-button"></button>
             </div>
@@ -37,7 +37,7 @@
         <div class="popup popup__add-image display__none">
             <div class="popup__content">
                 <h3 class="popup__title">Novo Local</h3>
-                <form class="popup__form popup__form-add-form" id="form__test">
+                <form class="popup__form popup__form-add-form" id="formtest">
                     <input class="popup__edit" id="title" type="text" placeholder="Título" oninput="titleValidate()"
                         required>
                     <span class="popup__error">Coloque um título.</span>
@@ -45,7 +45,7 @@
                         required>
                     <span class="popup__error">Por favor, insira um endereço web.</span>
 
-                    <button class="popup__button" type="submit">Salvar</button>
+                    <button class="popup__button" id="savebutton" type="submit">Salvar</button>
                 </form>
                 <button class="popup__close-button"></button>
             </div>
