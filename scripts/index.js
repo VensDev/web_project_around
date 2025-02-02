@@ -173,15 +173,35 @@ const addImageButton = document.querySelector(".profile__add-button");
 // Seleciona o popup de adicionar imagem
 const imagePopup = document.querySelector(".popup__add-image");
 
-// Adiciona um evento de clique ao botão de adicionar imagem para exibir o popup
-addImageButton.addEventListener("click", function () {
+// Função para abrir o popup de "Adicionar Imagem"
+function openAddImagePopup() {
   imagePopup.classList.remove("display__none");
-});
+
+  // Desabilita o botão de salvar
+  const saveButton = document.getElementById("savebutton-image");
+  saveButton.disabled = true;
+
+  // Reseta os campos do formulário
+  const addCardForm = document.querySelector(".popup__form-add-form");
+  addCardForm.reset();
+
+  // Oculta as mensagens de erro
+  const errorMessages = document.querySelectorAll(".popup__error");
+  errorMessages.forEach(function (errorMessage) {
+    errorMessage.style.visibility = "hidden";
+  });
+}
+
+// Adiciona um evento de clique ao botão de adicionar imagem para exibir o popup
+addImageButton.addEventListener("click", openAddImagePopup);
 
 // Adiciona um evento de clique aos botões de fechar para ocultar o popup de adicionar imagem
 closeButtons.forEach(function (button) {
   button.addEventListener("click", function () {
-    imagePopup.classList.add("display__none");
+    const popup = button.closest(".popup");
+    if (popup) {
+      popup.classList.add("display__none");
+    }
   });
 });
 

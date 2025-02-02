@@ -52,19 +52,21 @@
   color: black;
   height: 330px;
   position: relative;
-  position: absolute;
+  position: fixed;
   transform: translate(-50%, -50%);
   width: 430px;
   z-index: 10;
   top: 50%;
   left: 50%;
+  margin: 0 auto;
 }
+
 @keyframes drop {
   from {
     top: -50%;
   }
   to {
-    top: 35%;
+    top: 50%;
   }
 }
 
@@ -129,7 +131,7 @@
   background: transparent url(../images/close-icon.png) center;
   border: none;
   height: 26px;
-  position: absolute;
+  position: fixed;
   right: -34px;
   top: -30px;
   width: 26px;
@@ -163,18 +165,19 @@
   }
   .popup__edit {
     padding: 0 0 9px 0;
-    margin-bottom: 30px;
   }
   .popup__button {
     max-width: 238px;
   }
-
+  .popup__error {
+    margin-bottom: 18px;
+  }
   @keyframes drop {
     from {
       top: -50%;
     }
     to {
-      top: 20%;
+      top: 50%;
     }
   }
   .popup__image_content {
