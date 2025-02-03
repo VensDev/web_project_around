@@ -1,3 +1,16 @@
+// Importar funções de validação
+import {
+  showError,
+  hideError,
+  validateName,
+  validateAbout,
+  validateTitle,
+  validateUrl,
+  updateSaveButtonState,
+  updateImageSaveButtonState,
+  resetValidation,
+} from "./validate.js";
+
 // Seleciona o elemento do popup que será usado para editar o perfil
 const popupElement = document.querySelector(".popup");
 
@@ -17,6 +30,7 @@ closeButtons.forEach(function (button) {
   button.addEventListener("click", function () {
     const popupElement = button.closest(".popup");
     popupElement.classList.add("display__none");
+    resetValidation(); // Resetar a validação ao fechar o popup
   });
 });
 
@@ -49,73 +63,7 @@ function submitProfileForm(evt) {
 // Adiciona um evento de envio ao formulário de edição do perfil
 profileForm.addEventListener("submit", submitProfileForm);
 
-// Seleciona todos os campos de entrada e mensagens de erro nos popups
-const inputFields = document.querySelectorAll(".popup__edit");
-const errorMessages = document.querySelectorAll(".popup__error");
-const inputFormImage = document.getElementById("title");
-const inputFormUrl = document.getElementById("image-url");
-
-// Função para exibir uma mensagem de erro em um campo específico
-function showError(index) {
-  errorMessages[index].style.visibility = "visible";
-}
-
-// Função para ocultar uma mensagem de erro em um campo específico
-function hideError(index) {
-  errorMessages[index].style.visibility = "hidden";
-}
-
-// Função para validar o campo de nome (deve ter pelo menos 3 caracteres)
-function validateName() {
-  if (inputFields[0].value.length < 3) {
-    showError(0);
-    return false;
-  } else {
-    hideError(0);
-    return true;
-  }
-}
-
-// Função para validar o campo de descrição (deve ter pelo menos 3 caracteres)
-function validateAbout() {
-  if (inputFields[1].value.length < 3) {
-    showError(1);
-    return false;
-  } else {
-    hideError(1);
-    return true;
-  }
-}
-
-// Função para validar o campo de título (deve ter pelo menos 3 caracteres)
-function validateTitle() {
-  if (inputFormImage.value.length < 3) {
-    showError(2);
-    return false;
-  } else {
-    hideError(2);
-    return true;
-  }
-}
-
-function validateUrl() {
-  if (inputFormUrl.value.length < 3) {
-    showError(3);
-    return false;
-  } else {
-    hideError(3);
-    return true;
-  }
-}
-
-// Função para habilitar ou desabilitar o botão de salvar com base na validação dos campos
-function updateSaveButtonState() {
-  if (validateName() && validateAbout()) {
-    document.getElementById("savebutton").disabled = false;
-  } else {
-    document.getElementById("savebutton").disabled = true;
-  }
-}
+// Adiciona um evento de input ao campo de nome para atualizar o estado do botão de salvar
 document
   .getElementById("name")
   .addEventListener("input", updateSaveButtonState);
@@ -123,13 +71,7 @@ document
   .getElementById("about")
   .addEventListener("input", updateSaveButtonState);
 
-function updateImageSaveButtonState() {
-  if (validateTitle() && validateUrl()) {
-    document.getElementById("savebutton-image").disabled = false;
-  } else {
-    document.getElementById("savebutton-image").disabled = true;
-  }
-}
+// Adiciona um evento de input ao campo de título e URL para atualizar o estado do botão de salvar
 document
   .getElementById("title")
   .addEventListener("input", updateImageSaveButtonState);
@@ -194,16 +136,6 @@ function openAddImagePopup() {
 
 // Adiciona um evento de clique ao botão de adicionar imagem para exibir o popup
 addImageButton.addEventListener("click", openAddImagePopup);
-
-// Adiciona um evento de clique aos botões de fechar para ocultar o popup de adicionar imagem
-closeButtons.forEach(function (button) {
-  button.addEventListener("click", function () {
-    const popup = button.closest(".popup");
-    if (popup) {
-      popup.classList.add("display__none");
-    }
-  });
-});
 
 // Array de objetos contendo os dados iniciais dos cartões
 const cardData = [
@@ -275,13 +207,6 @@ function createCard(card) {
     popupImageElement.setAttribute("src", card.link);
     popupImageElement.setAttribute("alt", card.name);
     imagePopupFooter.textContent = card.name;
-  });
-
-  // Adiciona um evento de clique aos botões de fechar para ocultar o popup de imagem ampliada
-  closeButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
-      imagePopupElement.classList.add("display__none");
-    });
   });
 
   // Seleciona o contêiner onde os cartões serão exibidos e adiciona o novo cartão
