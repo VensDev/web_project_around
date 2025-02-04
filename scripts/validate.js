@@ -1,5 +1,3 @@
-// validate.js
-
 // Função para exibir uma mensagem de erro em um campo específico
 export function showError(index) {
   const errorMessages = document.querySelectorAll(".popup__error");
@@ -51,11 +49,14 @@ export function validateTitle() {
 // Função para validar o campo de URL (deve ter pelo menos 3 caracteres)
 export function validateUrl() {
   const inputFormUrl = document.getElementById("image-url");
-  if (inputFormUrl.value.length < 3) {
-    showError(3);
+  const urlRegex =
+    /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+
+  if (!urlRegex.test(inputFormUrl.value)) {
+    showError(3); // Mostra a mensagem de erro
     return false;
   } else {
-    hideError(3);
+    hideError(3); // Oculta a mensagem de erro
     return true;
   }
 }
