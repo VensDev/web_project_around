@@ -1,4 +1,4 @@
-// Importar funções de validação
+// Importar funções de validação.
 import {
   showError,
   hideError,
