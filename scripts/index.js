@@ -30,6 +30,7 @@ closeButtons.forEach(function (button) {
   button.addEventListener("click", function () {
     const popupElement = button.closest(".popup");
     popupElement.classList.add("display__none");
+
     resetValidation(); // Resetar a validação ao fechar o popup
   });
 });
@@ -86,13 +87,15 @@ function closePopupOnClickOutside(evt) {
   activePopups.forEach(function (popup) {
     const popupContent = popup.querySelector(".popup__content");
 
-    // Verifica se o clique foi fora do conteúdo do popup e não no botão que abre o popup
-    if (
-      !popupContent.contains(evt.target) &&
-      !evt.target.closest(".profile__edit-button") &&
-      !evt.target.closest(".profile__add-button")
-    ) {
-      popup.classList.add("display__none");
+    // Verifica se popupContent existe antes de usar o método contains
+    if (popupContent) {
+      if (
+        !popupContent.contains(evt.target) &&
+        !evt.target.closest(".profile__edit-button") &&
+        !evt.target.closest(".profile__add-button")
+      ) {
+        popup.classList.add("display__none");
+      }
     }
   });
 }
