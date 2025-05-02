@@ -14,19 +14,21 @@
 
 <body>
     <div class="page">
-
-
+        <!-- Popup Editar Perfil -->
         <div class="popup display__none">
             <div class="popup__content">
                 <h3 class="popup__title">Editar perfil</h3>
-                <form class="popup__form popup__form-edit" id="formtest">
-                    <input class="popup__edit" id="name" type="text" placeholder="Nomes" oninput="validateName()"
-                        onchange="updateSaveButtonState()" required>
-                    <span class="popup__error"> Preencha esse campo.</span>
+                <form class="popup__form popup__form-edit" id="form-edit">
 
-                    <input class="popup__edit" id="about" type="text" placeholder="Sobre mim" oninput="validateAbout()"
-                        onchange="updateSaveButtonState()" required>
-                    <span class="popup__error">Preencha esse campo.</span>
+                    <input class="popup__edit" id="name" type="text" placeholder="Nomes" required minlength="3">
+                    <div class="popup__error-container">
+                        <span class="popup__form-error popup__form-error_type_name"></span>
+                    </div>
+                    <input class="popup__edit" id="about" type="text" placeholder="Sobre mim" required minlength="3">
+                    <div class="popup__error-container">
+                        <span class="popup__form-error popup__form-error_type_about"></span>
+
+                    </div>
 
                     <button class="popup__button" id="savebutton" type="submit" disabled>Salvar</button>
                 </form>
@@ -34,16 +36,24 @@
             </div>
         </div>
 
+        <!-- Popup Adicionar Imagem -->
         <div class="popup popup__add-image display__none">
             <div class="popup__content">
                 <h3 class="popup__title">Novo Local</h3>
-                <form class="popup__form popup__form-add-form" id="formtest">
-                    <input class="popup__edit" id="title" type="text" placeholder="Título" oninput="validateTitle()"
-                        onchange="updateImageSaveButtonState()" required>
-                    <span class="popup__error">Coloque um título.</span>
-                    <input class="popup__edit" id="image-url" type="url" placeholder="Image URL" oninput="validateUrl()"
-                        onchange="updateImageSaveButtonState()" required>
-                    <span class="popup__error">Por favor, insira um endereço web.</span>
+                <form class="popup__form popup__form-add-form" id="form-add">
+
+                    <input class="popup__edit" id="title" type="text" placeholder="Título" required minlength="3">
+                    <div class="popup__error-container">
+                        <span class="popup__form-error popup__form-error_type_title"></span>
+                    </div>
+
+                    <input class="popup__edit" id="image_url" type="url" placeholder="Image URL" required>
+                    <div class="popup__error-container">
+                        <span class="popup__form-error popup__form-error_type_image_url"></span>
+
+
+                    </div>
+
 
                     <button class="popup__button" id="savebutton-image" type="submit" disabled>Salvar</button>
                 </form>
@@ -51,6 +61,7 @@
             </div>
         </div>
 
+        <!-- Popup Mostrar Imagem -->
         <div class="popup popup__show-image display__none">
             <div class="popup__image_content">
                 <img src="" class="popup__big-image" alt="">
@@ -68,13 +79,14 @@
                 <img src="./images/Avatar.png" alt="Avatar" class="profile__avatar">
                 <div class="profile__info">
                     <h2 class="profile__name">Jacques Cousteau</h2>
-                    <button class="profile__edit-button"></button>
+                    <button class="profile__edit-button" id="edit-profile-button"></button>
                     <p class="profile__subtitle">Explorador</p>
                 </div>
-                <button class="profile__add-button"></button>
+                <button class="profile__add-button" id="add-card-button"></button>
             </section>
 
-            <section class="element">
+            <section class="element" id="cards-container">
+                <!-- Cards serão inseridos aqui via JavaScript -->
             </section>
 
             <template id="element-card">
@@ -91,11 +103,9 @@
             <footer class="footer">
                 <p class="footer__copyright">© 2024 Around The U.S.</p>
             </footer>
-
         </main>
     </div>
     <script src="./scripts/index.js" type="module"></script>
-    <script src="./scripts/validate.js" defer></script>
 </body>
 
 </html>
