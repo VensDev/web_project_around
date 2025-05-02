@@ -46,26 +46,13 @@ export default class FormValidator {
       return false;
     }
 
-    // Validação especial para URL
-
-    // if (inputElement.id === "image-url") {
-    //   if (inputElement.value.length < 10) {
-    //     // Mínimo razoável para URL
-    //     this._showInputError(inputElement, "URL muito curta");
-    //     return false;
-    //   }
-    //   if (!this._validateUrl(inputElement.value)) {
-    //     this._showInputError(inputElement, "Insira uma URL válida");
-    //     return false;
-    //   }
-    // }
+    // validação especial para url
     if (inputElement.id === "image_url") {
       if (inputElement.value.length === 0) {
         this._showInputError(inputElement, "Preencha este campo");
         return false;
       }
 
-      // Verificação básica que funciona na prática
       if (
         !inputElement.value.includes("http") ||
         !inputElement.value.includes(".")
@@ -77,16 +64,10 @@ export default class FormValidator {
         return false;
       }
     }
-    // Se passou todas as validações, esconde o erro
+
     this._hideInputError(inputElement);
     return true;
   }
-
-  // _validateUrl(url) {
-  //   const urlRegex =
-  //     /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
-  //   return urlRegex.test(url);
-  // }
 
   _hasInvalidInput() {
     return this._inputList.some((inputElement) => {
