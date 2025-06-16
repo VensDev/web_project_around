@@ -34,21 +34,3 @@ export const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
   },
 ];
-
-// Funções de popup
-export function openPopup(popup) {
-  popup.classList.remove("display__none");
-  document.addEventListener("keydown", closeByEscape);
-}
-
-export function closePopup(popup) {
-  popup.classList.add("display__none");
-  document.removeEventListener("keydown", closeByEscape);
-}
-
-function closeByEscape(evt) {
-  if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(".popup:not(.display__none)");
-    closePopup(openedPopup);
-  }
-}

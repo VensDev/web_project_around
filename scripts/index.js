@@ -1,128 +1,106 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
-import {
-  openPopup,
-  closePopup,
+import Section from "./Section.js";
+import PopupWithImage from "./PopupWithImage.js";
+import PopupWithForm from "./PopupWithForm.js";
+import UserInfo from "./UserInfo.js";
+import { validationConfig, initialCards } from "./utils.js";
+
+// Instância da classe UserInfo
+const userInfo = new UserInfo({
+  nameSelector: ".profile__name",
+  jobSelector: ".profile__subtitle",
+});
+
+// Instância do popup de imagem
+const imagePopup = new PopupWithImage(".popup__show-image");
+imagePopup.setEventListeners();
+
+// Função para lidar com clique no card
+function handleCardClick(name, link) {
+  imagePopup.open(name, link);
+}
+
+// Instância da Section para renderizar cards
+const cardSection = new Section(
+  {
+    items: initialCards,
+    renderer: (cardData) => {
+      const card = new Card(cardData, "#element-card", handleCardClick);
+      const cardElement = card.generateCard();
+      cardSection.addItem(cardElement);
+    },
+  },
+  "#cards-container"
+);
+
+// Renderizar cards iniciais
+cardSection.renderItems();
+
+// Popup de edição de perfil
+const editProfilePopup = new PopupWithForm(".popup", (formData) => {
+  // Atualizar informações do usuário
+  userInfo.setUserInfo({
+    name: formData.name,
+    job: formData.about,
+  });
+  // Fechar popup após salvar
+  editProfilePopup.close();
+});
+editProfilePopup.setEventListeners();
+
+// Popup de adição de card
+const addCardPopup = new PopupWithForm(".popup__add-image", (formData) => {
+  // Criar novo card com os dados do formulário
+  const newCardData = {
+    name: formData.title,
+    link: formData.image_url,
+  };
+
+  const card = new Card(newCardData, "#element-card", handleCardClick);
+  const cardElement = card.generateCard();
+  cardSection.prependItem(cardElement);
+
+  // Fechar popup após adicionar
+  addCardPopup.close();
+});
+addCardPopup.setEventListeners();
+
+// Validadores de formulário
+const editFormValidator = new FormValidator(
   validationConfig,
-  initialCards,
-} from "./utils.js";
-
-// Elementos DOM
-const editProfileButton = document.querySelector(".profile__edit-button");
-const popupEdit = document.querySelector(".popup");
-const addCardButton = document.querySelector(".profile__add-button");
-const popupAdd = document.querySelector(".popup__add-image");
-const popupImage = document.querySelector(".popup__show-image");
-const cardsContainer = document.getElementById("cards-container");
-
-// Elementos do formulário de perfil
-const profileForm = document.getElementById("form-edit");
-const profileNameInput = document.getElementById("name");
-const profileAboutInput = document.getElementById("about");
-const profileNameDisplay = document.querySelector(".profile__name");
-const profileJobDisplay = document.querySelector(".profile__subtitle");
-
-// Elementos do formulário de novo card
-const addCardForm = document.getElementById("form-add");
-const imageTitleInput = document.getElementById("title");
-const imageUrlInput = document.getElementById("image_url");
-
-// Inicialização dos validadores
-const editFormValidator = new FormValidator(validationConfig, profileForm);
-const addFormValidator = new FormValidator(validationConfig, addCardForm);
+  document.getElementById("form-edit")
+);
+const addFormValidator = new FormValidator(
+  validationConfig,
+  document.getElementById("form-add")
+);
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 
-// Função para abrir imagem grande
-function handleCardClick(name, link) {
-  const popupImg = popupImage.querySelector(".popup__big-image");
-  const popupCaption = popupImage.querySelector(".popup__image_footer");
+// Event listeners para botões de abertura dos popups
+document
+  .querySelector(".profile__edit-button")
+  .addEventListener("click", () => {
+    // Preencher formulário com dados atuais
+    const currentUserInfo = userInfo.getUserInfo();
+    document.getElementById("name").value = currentUserInfo.name;
+    document.getElementById("about").value = currentUserInfo.job;
 
-  popupImg.src = link;
-  popupImg.alt = name;
-  popupCaption.textContent = name;
+    // Reset da validação
+    if (
+      editFormValidator &&
+      typeof editFormValidator.resetValidation === "function"
+    ) {
+      editFormValidator.resetValidation();
+    }
 
-  openPopup(popupImage);
-}
+    editProfilePopup.open();
+  });
 
-// Event listeners para popups
-editProfileButton.addEventListener("click", () => {
-  profileNameInput.value = profileNameDisplay.textContent;
-  profileAboutInput.value = profileJobDisplay.textContent;
-  if (
-    editFormValidator &&
-    typeof editFormValidator.resetValidation === "function"
-  ) {
-    editFormValidator.resetValidation();
-  }
-
-  openPopup(popupEdit);
-});
-
-addCardButton.addEventListener("click", () => {
-  addCardForm.reset();
+document.querySelector(".profile__add-button").addEventListener("click", () => {
+  // Reset da validação
   addFormValidator.resetValidation();
-  openPopup(popupAdd);
-});
-
-// Fechar popups
-document.querySelectorAll(".popup__close-button").forEach((button) => {
-  button.addEventListener("click", () => {
-    const popup = button.closest(".popup");
-    closePopup(popup);
-  });
-});
-
-// Fechar popup ao clicar fora
-function setupPopupCloseOnOutsideClick() {
-  document.addEventListener("click", (evt) => {
-    const popups = document.querySelectorAll(".popup:not(.display__none)");
-
-    popups.forEach((popup) => {
-      // Fecha se clicou diretamente no overlay OU no body (quando popup não cobre 100%)
-      if (
-        evt.target === popup ||
-        (evt.target === document.body && !popup.contains(evt.target))
-      ) {
-        closePopup(popup);
-      }
-    });
-  });
-}
-
-setupPopupCloseOnOutsideClick();
-
-// Manipulação de formulários
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  profileNameDisplay.textContent = profileNameInput.value;
-  profileJobDisplay.textContent = profileAboutInput.value;
-  closePopup(popupEdit);
-}
-
-function handleAddCardFormSubmit(evt) {
-  evt.preventDefault();
-
-  const newCard = {
-    name: imageTitleInput.value,
-    link: imageUrlInput.value,
-  };
-
-  const card = new Card(newCard, "#element-card", handleCardClick);
-  const cardElement = card.generateCard();
-  cardsContainer.prepend(cardElement);
-
-  addCardForm.reset();
-  closePopup(popupAdd);
-}
-
-profileForm.addEventListener("submit", handleProfileFormSubmit);
-addCardForm.addEventListener("submit", handleAddCardFormSubmit);
-
-// Renderizar cards iniciais
-initialCards.forEach((cardData) => {
-  const card = new Card(cardData, "#element-card", handleCardClick);
-  const cardElement = card.generateCard();
-  cardsContainer.append(cardElement);
+  addCardPopup.open();
 });
