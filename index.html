@@ -61,6 +61,8 @@
             </div>
         </div>
 
+
+
         <!-- Popup Mostrar Imagem -->
         <div class="popup popup__show-image display__none">
             <div class="popup__image_content">
@@ -70,13 +72,44 @@
             </div>
         </div>
 
+
+        <!-- Popup de Confirmação de Delete -->
+        <div class="popup popup__confirm-delete display__none">
+            <div class="popup__content">
+                <h3 class="popup__title">Tem certeza?</h3>
+                <form class="popup__form popup__form-confirm" id="form-confirm">
+                    <button class="popup__button" type="submit">Sim</button>
+                </form>
+                <button class="popup__close-button"></button>
+            </div>
+        </div>
+        <!-- Popup Alterar Avatar -->
+        <div class="popup popup__change-avatar display__none">
+            <div class="popup__content">
+                <h3 class="popup__title">Alterar foto de perfil</h3>
+                <form class="popup__form popup__form-avatar" id="form-avatar">
+                    <input class="popup__edit" id="avatar_url" type="url" placeholder="Link da imagem" required>
+                    <div class="popup__error-container">
+                        <span class="popup__form-error popup__form-error_type_avatar_url"></span>
+                    </div>
+                    <button class="popup__button" type="submit">Salvar</button>
+                </form>
+                <button class="popup__close-button"></button>
+            </div>
+        </div>
+
         <header class="header">
             <img src="./images/Vector.png" alt="Título Around of the us" class="header__title">
         </header>
 
         <main class="container">
             <section class="profile">
-                <img src="./images/Avatar.png" alt="Avatar" class="profile__avatar">
+                <div class="profile__avatar-container">
+                    <img src="./images/Avatar.png" alt="Avatar" class="profile__avatar">
+                    <div class="profile__avatar-overlay">
+
+                    </div>
+                </div>
                 <div class="profile__info">
                     <h2 class="profile__name">Jacques Cousteau</h2>
                     <button class="profile__edit-button" id="edit-profile-button"></button>
@@ -84,10 +117,11 @@
                 </div>
                 <button class="profile__add-button" id="add-card-button"></button>
             </section>
-
             <section class="element" id="cards-container">
                 <!-- Cards serão inseridos aqui via JavaScript -->
             </section>
+
+
 
             <template id="element-card">
                 <div class="element__template">
@@ -105,6 +139,12 @@
             </footer>
         </main>
     </div>
+
+
+
+
+
+
     <script src="./scripts/index.js" type="module"></script>
 </body>
 
