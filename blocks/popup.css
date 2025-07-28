@@ -83,6 +83,10 @@
   width: 100%;
 }
 
+.popup__change-avatar .popup__content {
+  height: 272px;
+}
+
 @keyframes drop {
   from {
     top: -50%;
