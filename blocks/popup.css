@@ -61,6 +61,28 @@
   margin: 0 auto;
 }
 
+.popup__confirm-delete .popup__content {
+  height: 181px;
+}
+
+.popup__confirm-delete .popup__title {
+  padding: 34px 36px 20px 36px;
+}
+
+.popup__confirm-delete .popup__form {
+  position: absolute;
+  top: 96px;
+  left: 36px;
+  right: 36px;
+  bottom: 36px;
+  max-width: none;
+  margin: 0;
+}
+
+.popup__confirm-delete .popup__button {
+  width: 100%;
+}
+
 @keyframes drop {
   from {
     top: -50%;

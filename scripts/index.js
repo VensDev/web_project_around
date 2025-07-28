@@ -46,8 +46,6 @@ function handleCardClick(name, link) {
 }
 
 // Função para lidar com like no card
-// Função para lidar com like no card
-// Função para lidar com like no card
 function handleLikeClick(card) {
   console.log("=== LIKE CLICADO ===");
   console.log("Card ID:", card.getId());
@@ -58,10 +56,10 @@ function handleLikeClick(card) {
     // Remover like
     api
       .removeLike(card.getId())
-      .then((result) => {
-        console.log("Like removido - isLiked:", result.isLiked);
-        // Passar o isLiked diretamente da API
-        card.updateLikes([], result.isLiked);
+      .then(() => {
+        console.log("Like removido com sucesso");
+        // Atualizar estado local
+        card.updateLikes([], false);
       })
       .catch((err) => {
         console.log("Erro ao remover like:", err);
@@ -71,10 +69,10 @@ function handleLikeClick(card) {
     // Adicionar like
     api
       .addLike(card.getId())
-      .then((result) => {
-        console.log("Like adicionado - isLiked:", result.isLiked);
-        // Passar o isLiked diretamente da API
-        card.updateLikes([], result.isLiked);
+      .then(() => {
+        console.log("Like adicionado com sucesso");
+        // Atualizar estado local
+        card.updateLikes([], true);
       })
       .catch((err) => {
         console.log("Erro ao adicionar like:", err);
@@ -306,31 +304,15 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     console.log("Erro ao carregar dados iniciais:", err);
   });
 
-// ⬇️ SOLUÇÃO TEMPORÁRIA - ADICIONE NO FINAL ⬇️
-setTimeout(() => {
-  // Tentar tanto o avatar quanto o container
-  const avatarElement =
-    document.querySelector(".profile__avatar") ||
-    document.querySelector(".profile__avatar-container") ||
-    document.querySelector(".profile__avatar-edit-button");
-
-  console.log("Procurando avatar element:", avatarElement);
-
-  if (avatarElement) {
-    avatarElement.onclick = function () {
-      console.log("Avatar clicado via onclick!");
-
-      if (
-        avatarFormValidator &&
-        typeof avatarFormValidator.resetValidation === "function"
-      ) {
-        avatarFormValidator.resetValidation();
-      }
-
-      changeAvatarPopup.open();
-    };
-    console.log("Event listener onclick adicionado!");
-  } else {
-    console.log("Avatar element não encontrado!");
-  }
-}, 1000);
+// Event listener para clique no avatar
+document
+  .querySelector(".profile__avatar-container")
+  .addEventListener("click", () => {
+    if (
+      avatarFormValidator &&
+      typeof avatarFormValidator.resetValidation === "function"
+    ) {
+      avatarFormValidator.resetValidation();
+    }
+    changeAvatarPopup.open();
+  });

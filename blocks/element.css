@@ -1,108 +1,100 @@
-.element{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px 17px;
-    margin-top: 50px;
+.element {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px 17px;
+  margin-top: 50px;
 }
 
-.element__template{
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    max-width: 282px;
-   
-    
+.element__template {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  max-width: 282px;
 }
 
-.element__item{
-    background-color: white;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-    overflow: hidden;
-    padding: 25px 15px 31px 21px;
+.element__item {
+  background-color: white;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 25px 15px 25px 21px;
 }
 
-.element__erase{
-    position: absolute;
-    width: 18px;
-    height: 19.3px;
-    cursor: pointer;
-    top: 18px;
-    right: 15px;
-    background: transparent url(../images/erase.png) center no-repeat;
-    border: none;
+.element__erase {
+  position: absolute;
+  width: 18px;
+  height: 19.3px;
+  cursor: pointer;
+  top: 18px;
+  right: 15px;
+  background: transparent url(../images/erase.png) center no-repeat;
+  border: none;
 }
 
-.element__erase:hover{
-    opacity: 0.6;
-    transition: 0.3s;
+.element__erase:hover {
+  opacity: 0.6;
+  transition: 0.3s;
 }
 
-.element__image{
-    aspect-ratio: 1/1;
-    cursor: pointer;
-    max-width: 282px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+.element__image {
+  aspect-ratio: 1/1;
+  cursor: pointer;
+  max-width: 282px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
-.element__title{
-    color: black;
-    font-family: 'Inter900';
-    font-size: 24px;
-    line-height: 29.05px;
-    margin: 0;
-    text-align: left;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 220px;
+.element__title {
+  color: black;
+  font-family: "Inter900";
+  font-size: 24px;
+  line-height: 29.05px;
+  margin: 0;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 220px;
 }
 
-
-.element__like{
-    border: none;
-    background: transparent url("../images/like.png") center no-repeat;
-    cursor: pointer;
-    height: 24px;
-    width: 24px;
-    padding: 0;
+.element__like {
+  border: none;
+  background: transparent url("../images/like.png") center no-repeat;
+  cursor: pointer;
+  height: 24px;
+  width: 24px;
+  padding: 0;
 }
 
-.element__like:hover{
-    opacity: 0.7;
-    transition: 0.5s;
+.element__like:hover {
+  opacity: 0.7;
+  transition: 0.5s;
 }
 
-.element__like-black{
-    border: none;
-    background: transparent url(../images/like-black.png) center no-repeat;
-    cursor: pointer;
-    height: 24px;
-    width: 24px;
+.element__like-black {
+  border: none;
+  background: transparent url(../images/like-black.png) center no-repeat;
+  cursor: pointer;
+  height: 24px;
+  width: 24px;
 }
-.element__like-black:hover{
-    transition: 0.5s;
+.element__like-black:hover {
+  transition: 0.5s;
 }
-
-
-
 
 @media screen and (max-width: 1024px) {
-    .element{
-        grid-template-columns: repeat(2, 1fr);
-        margin: 43px auto 0;
-        max-width: 581px;
-    }
-    
+  .element {
+    grid-template-columns: repeat(2, 1fr);
+    margin: 43px auto 0;
+    max-width: 581px;
+  }
 }
 @media screen and (max-width: 720px) {
-    .element{
-        grid-template-columns: 1fr;
-        margin: 36px auto 0;
-        max-width: 282px;
-    }
-
+  .element {
+    grid-template-columns: 1fr;
+    margin: 36px auto 0;
+    max-width: 282px;
+  }
 }
