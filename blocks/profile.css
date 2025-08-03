@@ -74,6 +74,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  display: inline-block;
 }
 
 .profile__edit-button {
@@ -138,6 +139,17 @@
     font-size: 16px;
     line-height: 19.36px;
   }
+  .profile__name {
+    max-width: 190px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .profile__avatar-container {
+    margin: 0 auto;
+    width: 120px;
+    height: 120px;
+  }
 }
 
 @media screen and (max-width: 720px) {
@@ -147,8 +159,10 @@
     max-width: 282px;
     margin-top: 42px;
   }
-  .profile__avatar {
+  .profile__avatar-container {
     margin: 0 auto;
+    width: 120px;
+    height: 120px;
   }
   .profile__info {
     margin: 30px 0 0;
