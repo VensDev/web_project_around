@@ -19,7 +19,6 @@
             <div class="popup__content">
                 <h3 class="popup__title">Editar perfil</h3>
                 <form class="popup__form popup__form-edit" id="form-edit">
-
                     <input class="popup__edit" id="name" type="text" placeholder="Nomes" required minlength="3">
                     <div class="popup__error-container">
                         <span class="popup__form-error popup__form-error_type_name"></span>
@@ -27,42 +26,30 @@
                     <input class="popup__edit" id="about" type="text" placeholder="Sobre mim" required minlength="3">
                     <div class="popup__error-container">
                         <span class="popup__form-error popup__form-error_type_about"></span>
-
                     </div>
-
                     <button class="popup__button" id="savebutton" type="submit" disabled>Salvar</button>
                 </form>
                 <button class="popup__close-button"></button>
             </div>
         </div>
-
         <!-- Popup Adicionar Imagem -->
         <div class="popup popup__add-image display__none">
             <div class="popup__content">
                 <h3 class="popup__title">Novo Local</h3>
                 <form class="popup__form popup__form-add-form" id="form-add">
-
                     <input class="popup__edit" id="title" type="text" placeholder="Título" required minlength="3">
                     <div class="popup__error-container">
                         <span class="popup__form-error popup__form-error_type_title"></span>
                     </div>
-
                     <input class="popup__edit" id="image_url" type="url" placeholder="Image URL" required>
                     <div class="popup__error-container">
                         <span class="popup__form-error popup__form-error_type_image_url"></span>
-
-
                     </div>
-
-
                     <button class="popup__button" id="savebutton-image" type="submit" disabled>Salvar</button>
                 </form>
                 <button class="popup__close-button"></button>
             </div>
         </div>
-
-
-
         <!-- Popup Mostrar Imagem -->
         <div class="popup popup__show-image display__none">
             <div class="popup__image_content">
@@ -71,8 +58,6 @@
                 <h3 class="popup__image_footer"></h3>
             </div>
         </div>
-
-
         <!-- Popup de Confirmação de Delete -->
         <div class="popup popup__confirm-delete display__none">
             <div class="popup__content">
@@ -97,17 +82,14 @@
                 <button class="popup__close-button"></button>
             </div>
         </div>
-
         <header class="header">
             <img src="./images/Vector.png" alt="Título Around of the us" class="header__title">
         </header>
-
         <main class="container">
             <section class="profile">
                 <div class="profile__avatar-container">
                     <img src="./images/Avatar.png" alt="Avatar" class="profile__avatar">
                     <div class="profile__avatar-overlay">
-
                     </div>
                 </div>
                 <div class="profile__info">
@@ -118,11 +100,7 @@
                 <button class="profile__add-button" id="add-card-button"></button>
             </section>
             <section class="element" id="cards-container">
-                <!-- Cards serão inseridos aqui via JavaScript -->
             </section>
-
-
-
             <template id="element-card">
                 <div class="element__template">
                     <img src="" class="element__image" alt="">
@@ -133,18 +111,11 @@
                     </div>
                 </div>
             </template>
-
             <footer class="footer">
                 <p class="footer__copyright">© 2024 Around The U.S.</p>
             </footer>
         </main>
     </div>
-
-
-
-
-
-
     <script src="./scripts/index.js" type="module"></script>
 </body>
 

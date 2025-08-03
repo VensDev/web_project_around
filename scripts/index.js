@@ -286,50 +286,49 @@ document.querySelector(".profile__add-button").addEventListener("click", () => {
   addFormValidator.resetValidation();
   addCardPopup.open();
 });
-// Dados fixos para sempre carregar 6 cartões
 const fixedCardsData = [
   {
     name: "Vale de Yosemite",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
     _id: "card1",
     owner: "user123",
-    isLiked: false
+    isLiked: false,
   },
   {
     name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg", 
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
     _id: "card2",
     owner: "user123",
-    isLiked: false
+    isLiked: false,
   },
   {
     name: "Montanhas Carecas",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg",
-    _id: "card3", 
+    _id: "card3",
     owner: "user123",
-    isLiked: false
+    isLiked: false,
   },
   {
     name: "Latemar",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg",
     _id: "card4",
-    owner: "user123", 
-    isLiked: false
+    owner: "user123",
+    isLiked: false,
   },
   {
     name: "Parque Nacional da Vanoise",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg",
     _id: "card5",
     owner: "user123",
-    isLiked: false
+    isLiked: false,
   },
   {
-    name: "Lago di Braies", 
+    name: "Lago di Braies",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
     _id: "card6",
     owner: "user123",
-    isLiked: false
-  }
+    isLiked: false,
+  },
 ];
 
 // Carregar dados iniciais do servidor + cartões fixos
@@ -349,7 +348,6 @@ Promise.all([api.getUserInfo()])
   })
   .catch((err) => {
     console.log("Erro ao carregar dados iniciais:", err);
-    // Se der erro na API, carregar pelo menos os cartões fixos
     userId = "user123";
     cardSection.renderItems(fixedCardsData);
     console.log("Cartões fixos carregados como fallback");
