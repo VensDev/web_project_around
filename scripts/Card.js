@@ -1,15 +1,22 @@
 export default class Card {
   constructor(data, templateSelector, handleCardClick, handleDeleteClick, handleLikeClick, userId) {
+    console.log("=== CRIANDO CARTÃO ===");
+    console.log("Dados recebidos:", data);
+    console.log("User ID:", userId);
+    
     this._name = data.name;
     this._link = data.link;
     this._id = data._id;
-    this._ownerId = data.owner;
-    this._isLiked = data.isLiked;
+    this._ownerId = data.owner._id || data.owner;
+    // Verificar se o usuário curtiu o cartão
+    this._isLiked = data.likes ? data.likes.some(like => like._id === userId || like === userId) : false;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
     this._handleLikeClick = handleLikeClick;
     this._userId = userId;
+    
+    console.log("Cartão criado - Owner:", this._ownerId, "User:", this._userId, "IsLiked:", this._isLiked);
   }
 
   _getTemplate() {

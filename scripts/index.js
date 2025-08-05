@@ -181,8 +181,10 @@ const editProfilePopup = new PopupWithForm(".popup", (formData) => {
 editProfilePopup.setEventListeners();
 
 // Popup de adição de card
-// Popup de adição de card
 const addCardPopup = new PopupWithForm(".popup__add-image", (formData) => {
+  console.log("=== ADICIONANDO CARTÃO ===");
+  console.log("Dados do formulário:", formData);
+  
   const submitButton = document.querySelector(
     ".popup__add-image .popup__button"
   );
@@ -192,6 +194,8 @@ const addCardPopup = new PopupWithForm(".popup__add-image", (formData) => {
   api
     .addCard(formData.title, formData.image_url)
     .then((result) => {
+      console.log("Cartão salvo na API:", result);
+      
       const card = new Card(
         result,
         "#element-card",
@@ -203,6 +207,8 @@ const addCardPopup = new PopupWithForm(".popup__add-image", (formData) => {
       const cardElement = card.generateCard();
       cardSection.prependItem(cardElement);
       addCardPopup.close();
+      
+      console.log("Cartão adicionado na tela com sucesso!");
     })
     .catch((err) => {
       console.log("Erro ao adicionar card:", err);
@@ -228,9 +234,12 @@ const changeAvatarPopup = new PopupWithForm(
     api
       .updateAvatar(formData.avatar_url)
       .then((result) => {
-        // Atualizar a imagem do avatar na tela
-        const avatarImage = document.querySelector(".profile__avatar");
-        avatarImage.src = result.avatar;
+        // Usar UserInfo para atualizar avatar
+        userInfo.setUserInfo({
+          name: userInfo.getUserInfo().name,
+          job: userInfo.getUserInfo().job,
+          avatar: result.avatar,
+        });
 
         changeAvatarPopup.close();
         console.log("Avatar atualizado com sucesso!");
@@ -283,57 +292,18 @@ document
   });
 
 document.querySelector(".profile__add-button").addEventListener("click", () => {
+  console.log("=== BOTÃO ADICIONAR CLICADO ===");
   addFormValidator.resetValidation();
   addCardPopup.open();
+  console.log("Popup de adicionar cartão aberto");
 });
-const fixedCardsData = [
-  {
-    name: "Vale de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
-    _id: "card1",
-    owner: "user123",
-    isLiked: false,
-  },
-  {
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
-    _id: "card2",
-    owner: "user123",
-    isLiked: false,
-  },
-  {
-    name: "Montanhas Carecas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg",
-    _id: "card3",
-    owner: "user123",
-    isLiked: false,
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg",
-    _id: "card4",
-    owner: "user123",
-    isLiked: false,
-  },
-  {
-    name: "Parque Nacional da Vanoise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg",
-    _id: "card5",
-    owner: "user123",
-    isLiked: false,
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
-    _id: "card6",
-    owner: "user123",
-    isLiked: false,
-  },
-];
-
-// Carregar dados iniciais do servidor + cartões fixos
-Promise.all([api.getUserInfo()])
-  .then(([userData]) => {
+// Carregar dados iniciais do servidor
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, cardsData]) => {
+    console.log("=== DADOS CARREGADOS DA API ===");
+    console.log("Dados do usuário:", userData);
+    console.log("Cartões carregados:", cardsData);
+    
     userId = userData._id;
 
     userInfo.setUserInfo({
@@ -342,15 +312,24 @@ Promise.all([api.getUserInfo()])
       avatar: userData.avatar,
     });
 
-    // Sempre carregar os 6 cartões fixos
-    cardSection.renderItems(fixedCardsData);
-    console.log("Dados do usuário e cartões fixos carregados com sucesso!");
+    // Filtrar apenas cartões do usuário atual
+    const userCards = cardsData.filter(card => {
+      const cardOwnerId = card.owner._id || card.owner;
+      return cardOwnerId === userId;
+    });
+    
+    console.log(`Total de cartões da API: ${cardsData.length}`);
+    console.log(`Cartões do usuário: ${userCards.length}`);
+    
+    // Carregar apenas cartões do usuário
+    cardSection.renderItems(userCards);
+    console.log(`Usuário ID: ${userId} - ${userCards.length} cartões do usuário carregados!`);
   })
   .catch((err) => {
     console.log("Erro ao carregar dados iniciais:", err);
+    // Fallback para dados básicos do usuário
     userId = "user123";
-    cardSection.renderItems(fixedCardsData);
-    console.log("Cartões fixos carregados como fallback");
+    console.log("Erro carregando dados - usando fallback");
   });
 
 // Event listener para clique no avatar
