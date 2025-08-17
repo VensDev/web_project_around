@@ -8,9 +8,7 @@ import Api from "./Api.js";
 import { validationConfig } from "./utils.js";
 import PopupWithConfirmation from "./PopupWithConfirmation.js";
 
-console.log("TESTE: JavaScript está executando!");
 
-console.log("Iniciando aplicação...");
 
 // Configuração da API
 const api = new Api({
@@ -21,57 +19,33 @@ const api = new Api({
   },
 });
 
-// Variável para armazenar o ID do usuário
 let userId = null;
-
-// Instância da classe UserInfo
 const userInfo = new UserInfo({
   nameSelector: ".profile__name",
   jobSelector: ".profile__subtitle",
   avatarSelector: ".profile__avatar",
 });
 
-console.log("UserInfo criado");
-
-// Instância do popup de imagem
 const imagePopup = new PopupWithImage(".popup__show-image");
-console.log("PopupWithImage criado");
-
 imagePopup.setEventListeners();
-console.log("Event listeners do popup de imagem configurados");
-
-// Função para lidar com clique no card
 function handleCardClick(name, link) {
   imagePopup.open(name, link);
 }
 
-// Função para lidar com like no card
 function handleLikeClick(card) {
-  console.log("=== LIKE CLICADO ===");
-  console.log("Card ID:", card.getId());
-  console.log("Já curtido:", card.isLiked());
-
   if (card.isLiked()) {
-    console.log("Removendo like...");
-    // Remover like
     api
       .removeLike(card.getId())
       .then(() => {
-        console.log("Like removido com sucesso");
-        // Atualizar estado local
         card.updateLikes([], false);
       })
       .catch((err) => {
         console.log("Erro ao remover like:", err);
       });
   } else {
-    console.log("Adicionando like...");
-    // Adicionar like
     api
       .addLike(card.getId())
       .then(() => {
-        console.log("Like adicionado com sucesso");
-        // Atualizar estado local
         card.updateLikes([], true);
       })
       .catch((err) => {
@@ -80,31 +54,14 @@ function handleLikeClick(card) {
   }
 }
 
-// Popup de confirmação de delete
 const confirmDeletePopup = new PopupWithConfirmation(".popup__confirm-delete");
 confirmDeletePopup.setEventListeners();
 
-// Variável para armazenar o card que será deletado
 let cardToDelete = null;
-
-// Função para lidar com delete do card
 function handleDeleteClick(card) {
-  console.log(
-    "Delete clicado!",
-    card.getId(),
-    "Owner:",
-    card._ownerId,
-    "User:",
-    userId
-  );
-
-  // Armazenar o card que será deletado
   cardToDelete = card;
-
-  // Definir a ação que será executada quando confirmar
   confirmDeletePopup.setSubmitAction(() => {
     if (cardToDelete) {
-      // Mostrar "Deletando..." no botão
       const submitButton = document.querySelector(
         ".popup__confirm-delete .popup__button"
       );
@@ -114,9 +71,8 @@ function handleDeleteClick(card) {
       api
         .deleteCard(cardToDelete.getId())
         .then(() => {
-          console.log("Card deletado com sucesso");
           cardToDelete.deleteCard();
-          cardToDelete = null; // Limpar a referência
+          cardToDelete = null;
         })
         .catch((err) => {
           console.log("Erro ao deletar card:", err);
@@ -127,11 +83,10 @@ function handleDeleteClick(card) {
     }
   });
 
-  // Abrir o popup de confirmação
   confirmDeletePopup.open();
 }
 
-// Instância da Section para renderizar cards
+
 const cardSection = new Section(
   {
     items: [],
@@ -145,18 +100,13 @@ const cardSection = new Section(
         userId
       );
       const cardElement = card.generateCard();
-      cardSection.addItem(cardElement); // Adicionar diretamente aqui
+      cardSection.addItem(cardElement);
     },
   },
   "#cards-container"
 );
 
-console.log("Section criada");
 
-// Resto do código...
-console.log("Aplicação iniciada com sucesso!");
-
-// Popup de edição de perfil
 const editProfilePopup = new PopupWithForm(".popup", (formData) => {
   const submitButton = document.querySelector(".popup .popup__button");
   const originalText = submitButton.textContent;
@@ -180,11 +130,8 @@ const editProfilePopup = new PopupWithForm(".popup", (formData) => {
 });
 editProfilePopup.setEventListeners();
 
-// Popup de adição de card
+
 const addCardPopup = new PopupWithForm(".popup__add-image", (formData) => {
-  console.log("=== ADICIONANDO CARTÃO ===");
-  console.log("Dados do formulário:", formData);
-  
   const submitButton = document.querySelector(
     ".popup__add-image .popup__button"
   );
@@ -194,8 +141,6 @@ const addCardPopup = new PopupWithForm(".popup__add-image", (formData) => {
   api
     .addCard(formData.title, formData.image_url)
     .then((result) => {
-      console.log("Cartão salvo na API:", result);
-      
       const card = new Card(
         result,
         "#element-card",
@@ -207,8 +152,6 @@ const addCardPopup = new PopupWithForm(".popup__add-image", (formData) => {
       const cardElement = card.generateCard();
       cardSection.prependItem(cardElement);
       addCardPopup.close();
-      
-      console.log("Cartão adicionado na tela com sucesso!");
     })
     .catch((err) => {
       console.log("Erro ao adicionar card:", err);
@@ -219,9 +162,7 @@ const addCardPopup = new PopupWithForm(".popup__add-image", (formData) => {
 });
 addCardPopup.setEventListeners();
 
-// ⬇️ COLOQUE AQUI ⬇️
 // Popup de alteração de avatar
-// ⬇️ POPUP DE AVATAR (depois do addCardPopup) ⬇️
 const changeAvatarPopup = new PopupWithForm(
   ".popup__change-avatar",
   (formData) => {
@@ -242,7 +183,6 @@ const changeAvatarPopup = new PopupWithForm(
         });
 
         changeAvatarPopup.close();
-        console.log("Avatar atualizado com sucesso!");
       })
       .catch((err) => {
         console.log("Erro ao atualizar avatar:", err);
@@ -254,7 +194,7 @@ const changeAvatarPopup = new PopupWithForm(
 );
 changeAvatarPopup.setEventListeners();
 
-// ⬇️ VALIDADORES (só uma vez!) ⬇️
+// Validadores
 const editFormValidator = new FormValidator(
   validationConfig,
   document.getElementById("form-edit")
@@ -273,7 +213,7 @@ addFormValidator.enableValidation();
 avatarFormValidator.enableValidation();
 
 // Carregar dados iniciais do servidor
-// Event listeners para botões
+
 document
   .querySelector(".profile__edit-button")
   .addEventListener("click", () => {
@@ -292,18 +232,12 @@ document
   });
 
 document.querySelector(".profile__add-button").addEventListener("click", () => {
-  console.log("=== BOTÃO ADICIONAR CLICADO ===");
   addFormValidator.resetValidation();
   addCardPopup.open();
-  console.log("Popup de adicionar cartão aberto");
 });
-// Carregar dados iniciais do servidor
+
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, cardsData]) => {
-    console.log("=== DADOS CARREGADOS DA API ===");
-    console.log("Dados do usuário:", userData);
-    console.log("Cartões carregados:", cardsData);
-    
     userId = userData._id;
 
     userInfo.setUserInfo({
@@ -312,27 +246,19 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
       avatar: userData.avatar,
     });
 
-    // Filtrar apenas cartões do usuário atual
     const userCards = cardsData.filter(card => {
       const cardOwnerId = card.owner._id || card.owner;
       return cardOwnerId === userId;
     });
     
-    console.log(`Total de cartões da API: ${cardsData.length}`);
-    console.log(`Cartões do usuário: ${userCards.length}`);
-    
-    // Carregar apenas cartões do usuário
     cardSection.renderItems(userCards);
-    console.log(`Usuário ID: ${userId} - ${userCards.length} cartões do usuário carregados!`);
   })
   .catch((err) => {
     console.log("Erro ao carregar dados iniciais:", err);
-    // Fallback para dados básicos do usuário
     userId = "user123";
-    console.log("Erro carregando dados - usando fallback");
   });
 
-// Event listener para clique no avatar
+
 document
   .querySelector(".profile__avatar-container")
   .addEventListener("click", () => {
